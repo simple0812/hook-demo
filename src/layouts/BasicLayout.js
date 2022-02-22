@@ -9,7 +9,7 @@ import _ from 'lodash';
 import { inject, observer } from 'mobx-react';
 import { getRouterData } from '@/router';
 import subPageConfig from '@/router/subPageConfig';
-// import SideMenu from '@/components/SideMenu';
+import SideMenu from '@/components/SideMenu';
 // import GlobalHeader from '@/components/GlobalHeader';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import Exception403 from '@/containers/Exception/403';
@@ -45,8 +45,8 @@ const query = {
 
 const { pathToRegexp } = require('path-to-regexp');
 
-@inject('globalStore')
-@observer
+// @inject('globalStore')
+// @observer
 export default class BasicLayout extends Component {
   constructor(props) {
     super(props);
@@ -121,7 +121,7 @@ export default class BasicLayout extends Component {
         }
       }
     };
-    createRoute(this.getMenuData());
+    // createRoute(this.getMenuData());
     return rouList;
   }
   getLayoutStyle() {
@@ -255,9 +255,6 @@ export default class BasicLayout extends Component {
       return route;
     });
 
-    // console.log('routers', routers);
-    // console.log('pathname', pathname);
-
     if (currentRoute.length > 0) {
       return (
         <Breadcrumb className={styles.breadcrumb}>
@@ -277,10 +274,10 @@ export default class BasicLayout extends Component {
     const routers = this.getMenuData();
     const rouList = this.getRouteList();
     const pathname = this.getDefaultPath();
+    console.log('BasicLayout', pathname);
 
-    console.log('--------------', routers, rouList, pathname);
     const { route, isMobile } = this.state;
-    const collapse = this.props.globalStore.collapse;
+    const collapse = this.props.globalStore?.collapse;
     const layout = (
       <Layout theme="dark">
         {/* <GlobalHeader
@@ -290,30 +287,31 @@ export default class BasicLayout extends Component {
         /> */}
 
         <Layout className={styles.basicLayout}>
-          {/* <SideMenu
+          <SideMenu
             routers={routers}
             isMobile={isMobile}
             routeMap={this.breadcrumbNameMap}
             collapsed={collapse}
-            onCollapse={this.props.globalStore.toggle}
-          /> */}
+            // onCollapse={this.props.globalStore.toggle}
+          />
           <Layout className={styles.contentLayout}>
             {this.renderBreadCrumb(routers)}
             <Content className={styles.content}>
               <Routes>
-                {rouList}
-                {subPageConfig &&
+                {/* {rouList} */}
+                {/* {subPageConfig &&
                   Array.isArray(subPageConfig) &&
                   subPageConfig.map((item) => {
                     return (
                       <Route
                         key={item.key}
                         path={item.path}
-                        component={item.component}
+                        element={React.createElement(item.component)}
                       />
                     );
-                  })}
-                <Navigate from="/" to={pathname} />
+                  })} */}
+
+                <Route path="*" element={<Navigate to={pathname} />} />
               </Routes>
             </Content>
           </Layout>
@@ -324,11 +322,7 @@ export default class BasicLayout extends Component {
     return (
       <DocumentTitle title={this.getPageTitle()}>
         <div>
-          {(params) => (
-            <div className={classNames(params)}>
-              {rouList.length > 0 ? layout : noMenus}
-            </div>
-          )}
+          <div>{rouList.length > 0 ? layout : noMenus}</div>
         </div>
       </DocumentTitle>
     );

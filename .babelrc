@@ -1,6 +1,7 @@
 {
-  // "presets": ["react-app"],
+  "presets": ["@babel/preset-react"],
   "plugins": [
+    ["@babel/plugin-proposal-private-property-in-object"], // svg插件的依赖
     [
       "@babel/plugin-proposal-decorators",
       {

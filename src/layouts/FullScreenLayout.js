@@ -104,7 +104,8 @@ export default class FullScreenLayout extends React.Component {
 
   render() {
     const rouList = this.getRouteList();
-    console.log('--------------', rouList);
+    console.log('FullScreenLayout');
+
     const layout = (
       <Layout className={styles.contentLayout}>
         <Content className={styles.content}>

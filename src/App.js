@@ -1,11 +1,24 @@
 import React, { Component } from 'react';
-import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  BrowserRouter as Router,
+  Navigate
+} from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
-import { getLayoutData } from './router';
+import { getLayoutData } from '@/router';
+
+import store from '@/stores';
+
 import 'moment/locale/zh-cn';
-// import '@ant-design/compatible/assets/index.css';
+import Help from '@/containers/Help';
+import Foo from '@/containers/Foo';
+import Bar from '@/containers/Bar';
+import Exception404 from '@/containers/Exception/404';
+import Exception403 from '@/containers/Exception/403';
+import Exception500 from '@/containers/Exception/500';
 
 class App extends Component {
   constructor(props) {
@@ -16,20 +29,21 @@ class App extends Component {
   render() {
     const routers = getLayoutData();
 
-    console.log('zzzz', routers);
     return (
-      <Provider>
+      <Provider {...store}>
         <Router>
           <ConfigProvider locale={zhCN}>
             <Routes>
-              {routers.map((route, index) => (
-                <Route
-                  key={index}
-                  path={route.path}
-                  exact={route.exact}
-                  component={route.render}
-                />
-              ))}
+              <Route path="/home" element={<Help />} />
+              <Route path="/foo" element={<Foo />} />
+              <Route path="/bar" element={<Bar />} />
+              <Route path="/403" element={<Exception403 />} />
+              <Route path="/404" element={<Exception404 />} />
+              <Route path="/500" element={<Exception500 />} />
+              <Route
+                path="*"
+                element={<Navigate to="/home" replace={false} />}
+              />
             </Routes>
           </ConfigProvider>
         </Router>

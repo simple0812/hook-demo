@@ -2,7 +2,7 @@
   {
     "id": 2,
     "menuName": "场地管理",
-    "menuUrl": "/test",
+    "menuUrl": "/",
     "menuKey": "site",
     "menuIcon": "appstore",
     "menuType": "folder",
@@ -11,8 +11,18 @@
       {
         "id": 1,
         "menuName": "物业地查询",
-        "menuUrl": "/test",
-        "menuKey": "test",
+        "menuUrl": "/foo",
+        "menuKey": "foo",
+        "menuIcon": "sketch",
+        "menuType": "page",
+        "menuOrder": 1,
+        "extraInfo": {}
+      },
+      {
+        "id": 2,
+        "menuName": "物业地查询",
+        "menuUrl": "/bar",
+        "menuKey": "bar",
         "menuIcon": "sketch",
         "menuType": "page",
         "menuOrder": 1,

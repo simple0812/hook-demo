@@ -25,13 +25,13 @@ class Exception extends React.PureComponent {
     } = this.props;
     const clsString = classNames(styles.exception, className);
     return (
-      <div className={clsString}>
-        <div className={styles.imgBlock}>
-          <div className={styles.imgEle}>{children}</div>
+      <div className="exception">
+        <div className="imgBlock">
+          <div className="imgEle">{children}</div>
         </div>
-        <div className={styles.content}>
+        <div className="content">
           <h1>{title}</h1>
-          <div className={styles.desc}>{desc}</div>
+          <div className="desc">{desc}</div>
           {/* <div className={styles.actions}>
             {createElement(
                 linkElement,

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 2,
+    "menuName": "场地管理",
+    "menuUrl": "/test",
+    "menuKey": "site",
+    "menuIcon": "appstore",
+    "menuType": "folder",
+    "menuOrder": 1,
+    "children": [
+      {
+        "id": 1,
+        "menuName": "物业地查询",
+        "menuUrl": "/test",
+        "menuKey": "test",
+        "menuIcon": "sketch",
+        "menuType": "page",
+        "menuOrder": 1,
+        "extraInfo": {}
+      }
+    ]
+  }
+]

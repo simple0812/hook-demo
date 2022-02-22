@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>success_fill</title>
+    <defs>
+        <linearGradient x1="50%" y1="16.9123805%" x2="50%" y2="75.0286291%" id="linearGradient-1">
+            <stop stop-color="#FAFCFF" offset="0%"></stop>
+            <stop stop-color="#CBD8FD" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="牛腩设计部分" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="GIS系统-05" transform="translate(-1598.000000, -852.000000)">
+            <g id="success_fill" transform="translate(1598.000000, 852.000000)">
+                <rect id="Rectangle" fill="#000000" fill-rule="nonzero" opacity="0" x="0" y="0" width="24" height="24"></rect>
+                <path d="M15.61575,11.06925 L11.49975,15.56925 C11.3578061,15.7248175 11.1568425,15.8133177 10.94625,15.8130009 L10.94175,15.8130009 C10.7296516,15.8117343 10.5280063,15.7207214 10.38675,15.5625 L8.3775,13.3125 C8.10163377,13.0034967 8.12849668,12.5293662 8.4375,12.2535 C8.74650332,11.9776338 9.22063377,12.0044967 9.4965,12.3135 L10.953,13.94475 L14.50875,10.05675 C14.6896157,9.85900349 14.962239,9.77276889 15.2239254,9.83052993 C15.4856117,9.88829097 15.6966047,10.0812724 15.7774254,10.3367799 C15.858246,10.5922875 15.7966157,10.8715035 15.61575,11.06925 M12.00075,2.99925 C7.0365,3 3,7.03875 3,12 C3,16.9635 7.0365,21 12,21 C16.96125,21 21,16.9635 21,12 C21,7.03875 16.96125,3 12,3" id="Shape" fill="url(#linearGradient-1)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

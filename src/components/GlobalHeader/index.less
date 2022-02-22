@@ -1,0 +1,112 @@
+@nav-header-height: 48px;
+
+.header {
+  height: @nav-header-height;
+  line-height: @nav-header-height;
+  background: #fff;
+  // background-image: url('../../assets/img/header2x.png');
+  background-size: 100% 64px;
+  display: flex;
+  .logo {
+    width: 208px;
+    height: @nav-header-height;
+    position: relative;
+    line-height: @nav-header-height;
+    transition: all 0.3s;
+    overflow: hidden;
+    text-align: center;
+    vertical-align: top;
+    display: inline-block;
+    background: #001529;
+    a {
+      font-size: 14px;
+      font-family: PingFangSC-Semibold, PingFang SC;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 1);
+    }
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      height: 30px;
+      // width: 100px;
+      margin-right: 12px;
+      position: relative;
+      top: -1px;
+    }
+    // .headerTitle {
+    //   &::before {
+    //     content: ' ';
+    //     display: inline-block;
+    //     height: 14px;
+    //     width: 1px;
+    //     background: rgba(255, 255, 255, 0.4);
+    //     margin-right: 12px;
+    //     position: relative;
+    //     top:2px;
+    //   }
+    // }
+    h1 {
+      color: white;
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 20px;
+      margin: 0 0 0 12px;
+      font-family: 'Myriad Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      font-weight: 600;
+    }
+  }
+  .optionsContainer {
+    flex: 1;
+    text-align: right;
+    .userContainer {
+      padding-right: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      .message {
+        font-size: 14px;
+        font-family: PingFangSC-Regular;
+        font-weight: 400;
+        color: rgba(0,0,0,.65);
+        img {
+          width: 18px;
+          height: 18px;
+          position: relative;
+          top: 4px;
+        }
+      }
+      .userName {
+        line-height: @nav-header-height;
+        font-size: 16px;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: rgba(0,0,0,.65);
+      }
+      img {
+        width: 24px;
+        height: 24px;
+        margin: 0 12px;
+        border-radius: 20px;
+      }
+    }
+  }
+}
+
+.headerActive {
+  .logo {
+    width: 80px;
+  }
+  a {
+    display: none;
+  }
+}
+.trigger {
+  padding: 0 24px;
+  height: 48px;
+  text-align: center;
+  line-height: 48px;
+  position: absolute;
+  top: 0;
+  background: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+}

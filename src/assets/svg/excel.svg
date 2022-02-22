@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="75px" viewBox="0 0 60 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 6</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="文档中心" transform="translate(-670.000000, -127.000000)">
+            <g id="编组-8" transform="translate(636.000000, 127.000000)">
+                <g id="编组-6" transform="translate(34.000000, 0.000000)">
+                    <g id="编组-4">
+                        <path d="M3,0 L42.0736084,0 L42.0736084,0 L60,17.878418 L60,72 C60,73.6568542 58.6568542,75 57,75 L3,75 C1.34314575,75 2.02906125e-16,73.6568542 0,72 L0,3 C-2.02906125e-16,1.34314575 1.34314575,3.04359188e-16 3,0 Z" id="矩形" fill="#54BE64"></path>
+                        <path d="M42,0 L60,18 L46,18 C43.790861,18 42,16.209139 42,14 L42,0 L42,0 Z" id="矩形" fill="#84DE92"></path>
+                        <polygon id="x" fill="#FFFFFF" fill-rule="nonzero" points="25.7438965 49.5 29.7355957 43.4758301 33.6906738 49.5 40.0078125 49.5 32.8117676 39.2644043 39.4035645 30.0541992 33.361084 30.0541992 29.7355957 35.4008789 26.2932129 30.0541992 20.0126953 30.0541992 26.732666 39.4841309 19.7197266 49.5"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,96 @@
+.player {
+  line-height: 40px;
+  height: 80px;
+  background-color: #000;
+}
+.playerContainer {
+  text-align: left;
+
+  .playerButton {
+    display: inline-block;
+    width: 89px;
+    margin-top: 20px;
+    vertical-align: top;
+    :global {
+      .ant-btn {
+        width: 40px;
+        height: 40px;
+        margin-left: 24px;
+      }
+      .anticon-caret-right {
+        font-size: 28px;
+        margin-left: 4px;
+        margin-top: 3px;
+      }
+    }
+  }
+
+  .slider {
+    display: inline-block;
+    vertical-align: top;
+    width: 346px;
+    padding-top: 10px;
+    .timePassed,
+    .timeAll {
+      font-size: 10px;
+      font-family: PingFangSC-Regular;
+      font-weight: 400;
+      color: rgba(187, 188, 205, 1);
+      line-height: 14px;
+      display: inline-block;
+      width: 173px;
+      text-align: left;
+    }
+    .timeAll {
+      text-align: right;
+    }
+    :global {
+      .ant-slider {
+        margin: 0;
+        padding: 0;
+      }
+      .ant-slider-rail,
+      .ant-slider-track,
+      .ant-slider-step {
+        height: 3px;
+        //margin-left: 89px;
+        //width: 210px;
+        //padding-right: 60px;
+      }
+      .ant-slider-handle {
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        margin-top: -4px;
+      }
+    }
+  }
+
+  .downloadIcon {
+    width: 24px;
+    height: 26px;
+    margin-top: 27px;
+    float: right;
+    margin-right: 17px;
+    cursor: pointer;
+  }
+}
+
+.icon {
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.iconVolume {
+  font-size: 32px;
+  color: #666;
+}

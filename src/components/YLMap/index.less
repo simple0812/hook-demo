@@ -1,0 +1,136 @@
+.ylMap {
+  position: relative;
+  // cursor: move;
+  width: 100%;
+  height: 100%;
+  .mapContainer {
+    width: 100%;
+    height: 100%;
+  }
+  .poiSearch {
+    z-index: 99999;
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    right: 24px;
+  }
+}
+.addressOption {
+  height: 70px;
+  border-bottom: 1px solid rgba(225, 225, 225, 1);
+  position: relative;
+  width: 100%;
+}
+
+.addressOptionContent {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  padding: 12px 20px;
+  position: absolute;
+}
+
+.poiName {
+  margin-bottom: 5px;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.85);
+  > svg {
+    font-size: 18px;
+    margin-right: 10px;
+    position: relative;
+    top: 2px;
+  }
+}
+.poiAddress {
+  font-size: 14px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(126, 126, 126, 1);
+  padding-left: 48px;
+}
+
+.publicSentiment {
+  width: 245px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 4px 12px 0px rgba(83, 117, 161, 0.45);
+  padding: 20px 16px;
+}
+
+.publicSentimentName {
+  font-size: 16px;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.85);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+.publicSentimentAddress {
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(126, 126, 126, 1);
+  line-height: 1.5;
+  white-space: normal;
+}
+
+.deleteWrapper {
+  position: absolute;
+  z-index: 999999;
+  bottom: 15px;
+  right: 70px;
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(
+    360deg,
+    rgba(229, 90, 90, 1) 0%,
+    rgba(244, 120, 120, 1) 100%
+  );
+  box-shadow: 0px 6px 8px 0px rgba(24, 44, 70, 0.3);
+  border-radius: 4px;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.successWrapper {
+  position: absolute;
+  z-index: 999999;
+  cursor: pointer;
+  bottom: 15px;
+  right: 23px;
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(
+    360deg,
+    rgba(42, 134, 255, 1) 0%,
+    rgba(86, 161, 240, 1) 100%
+  );
+  box-shadow: 0px 6px 8px 0px rgba(24, 44, 70, 0.3);
+  border-radius: 4px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchInputWrapper {
+  z-index: 99999;
+  :global {
+    input.ant-input {
+      padding-right: 105px !important;
+    }
+  }
+}
+
+.searchWrapper {
+  z-index: 99999;
+}

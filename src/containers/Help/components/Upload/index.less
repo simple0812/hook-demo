@@ -1,0 +1,39 @@
+:global {
+  .zl-upload-cotainer {
+    position: relative;
+
+    .upload-close-icon {
+      position: absolute;
+      top: -5px;
+      right: 0px;
+      z-index: 999;
+      background: inherit;
+    }
+  }
+  .bnq-upload-box {
+    width: 100%;
+    max-height: 80px;
+    overflow: hidden;
+    position: relative;
+
+    &:hover {
+      .bnq-upload-mask {
+        display: flex;
+      }
+    }
+  }
+
+  .bnq-upload-mask {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 0 20px;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}

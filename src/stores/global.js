@@ -35,10 +35,13 @@ export default new GlobalStore();
 function injectService(obj, instance) {
   let methodKeys = filter$Methods(obj);
 
+  // 将service中 以$开头的方法都映射到 store中
   methodKeys.forEach((methodName) => {
     let observableProp = null;
+    // 如果store中包含 service中的同名方法 则跳过
     if (!instance[methodName]) {
-      if (methodName.slice(0, 4) === '$get') {
+      if (methodName.indexOf('$get') == 0) {
+        // 首个字母 小写
         observableProp =
           '$' + methodName[4].toLocaleLowerCase() + methodName.slice(5);
 
@@ -54,11 +57,9 @@ function injectService(obj, instance) {
       instance[methodName] = flowWithLoading.call(
         instance,
         methodName,
-        // eslint-disable-next-line
         function* gen(...args) {
           const res = yield obj[methodName](...args);
           let { code, data, message } = res || {};
-          console.log('gen this', this);
 
           // 响应异常
           if (+code !== 0) {

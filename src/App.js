@@ -8,7 +8,6 @@ import {
 import { Provider } from 'mobx-react';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
-import { getLayoutData } from '@/router';
 
 import store from '@/stores';
 
@@ -27,8 +26,6 @@ class App extends Component {
   }
 
   render() {
-    const routers = getLayoutData();
-
     return (
       <Provider {...store}>
         <Router>

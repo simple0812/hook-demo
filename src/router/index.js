@@ -24,7 +24,7 @@ if (!isWhitePermissions) {
 const createMenuItem = (label, path, exact, key, icon, order, theme) => {
   let component = pageConfig[key] || null;
 
-  console.log('component', component);
+  // console.log('component', component);
   if (!component) {
     component = pageConfig['exception404'];
   }

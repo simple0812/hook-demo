@@ -44,13 +44,13 @@ function toEnum(obj) {
       configrable: false,
       get: function () {
         return _data[key].value;
-      },
-      set: function (val) {
-        // if (!_data[key]) {
-        //   _data[key] = {};
-        // }
-        // _data[key].value = val;
       }
+      // set: function (val) {
+      //   if (!_data[key]) {
+      //     _data[key] = {};
+      //   }
+      //   _data[key].value = val;
+      // }
     });
   });
 

@@ -1,7 +1,7 @@
 import React, { createElement } from 'react';
 import classNames from 'classnames';
 import { Button } from 'antd';
-import styles from './index.less';
+import './index.less';
 
 class Exception extends React.PureComponent {
   static defaultProps = {
@@ -23,7 +23,6 @@ class Exception extends React.PureComponent {
       redirect,
       children
     } = this.props;
-    const clsString = classNames(styles.exception, className);
     return (
       <div className="exception">
         <div className="imgBlock">

@@ -8,7 +8,7 @@ import {
 import { Provider } from 'mobx-react';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
-// import 'antd/dist/antd.css';
+import 'antd/dist/antd.css';
 // import 'antd/lib/style/themes/default.less';
 
 import store from '@/stores';
@@ -35,8 +35,8 @@ class App extends Component {
           <ConfigProvider locale={zhCN}>
             <Routes>
               <Route path="/home" element={renderByDefaultLayout(Help)} />
-              <Route path="/foo" element={<Foo />} />
-              <Route path="/bar" element={<Bar />} />
+              <Route path="/foo" element={renderByDefaultLayout(Foo)} />
+              <Route path="/bar" element={renderByDefaultLayout(Bar)} />
               <Route path="/403" element={<Exception403 />} />
               <Route path="/404" element={<Exception404 />} />
               <Route path="/500" element={<Exception500 />} />

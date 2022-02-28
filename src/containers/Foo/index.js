@@ -11,7 +11,7 @@ function Foo(props) {
   }, []);
   return (
     <div>
-      <div>Foo{process.env.REACT_APP_ZX}</div>
+      <div>Foo{process.env.REACT_APP_ZX}aaa1a</div>
       <div onClick={props.xxx.toggle}>{props.xxx.locale}</div>
       <div>{props.xxx.double}</div>
       <div>

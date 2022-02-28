@@ -51,14 +51,15 @@ module.exports = override(
   addLessLoader({
     lessOptions: {
       relativeUrls: false,
+      javascriptEnabled: true,
       strictMath: true,
       noIeCompat: true,
       modifyVars: {
-        '@primary-color': '#1DA57A' // for example, you use Ant Design to change theme color.
+        // '@primary-color': '#1DA57A' // for example, you use Ant Design to change theme color.
       },
       cssLoaderOptions: {}, // .less file used css-loader option, not all CSS file.
       cssModules: {
-        localIdentName: '[path][name]__[local]--[hash:base64:5]' // if you use CSS Modules, and custom `localIdentName`, default is '[local]--[hash:base64:5]'.
+        localIdentName: getCSSModuleLocalIdent // if you use CSS Modules, and custom `localIdentName`, default is '[local]--[hash:base64:5]'.
       }
     }
   }),
@@ -76,31 +77,17 @@ module.exports = override(
   // }),
   // 装饰器
   addDecoratorsLegacy(),
-  // addLessLoader({
-  //   javascriptEnabled: true,
-  //   relativeUrls: false,
-  //   // modifyVars: {'@primary-color': '#16a951'},
-  //   sourceMap: false
-  // }),
 
   //路由简写
   addWebpackAlias({
     '@': path.resolve(__dirname, 'src')
-  })
+  }),
 
   // svg loader
-  // addWebpackModuleRule({
-  //   test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-  //   use: [
-  //     {
-  //       loader: '@svgr/webpack',
-  //       options: {
-  //         babel: false,
-  //         icon: true
-  //       }
-  //     }
-  //   ]
-  // })
+  addWebpackModuleRule({
+    test: /\.svg$/,
+    use: ['@svgr/webpack']
+  })
   // (config) => {
   //   console.log(config);
   //   return config;

@@ -8,7 +8,7 @@ import {
 import { Provider } from 'mobx-react';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
-// import 'antd/dist/antd.css';
+import 'antd/dist/antd.css';
 // import 'antd/lib/style/themes/default.less';
 
 import store from '@/stores';

@@ -158,7 +158,6 @@ export default class BasicLayout extends Component {
     });
 
     const breads = this.breadcrumbNameMap[menuKey] || [];
-    console.log('zzzz22223444443332', pathname, menuKey, breads);
     breads.forEach((bread) => {
       const { label, path } = bread;
       currentRoute.push({ label, path });
@@ -194,32 +193,26 @@ export default class BasicLayout extends Component {
     const collapse = this.props.globalStore?.collapse;
 
     return (
-      <DocumentTitle title={this.getPageTitle()}>
-        <div>
-          <div>
-            <Layout theme="dark">
-              <GlobalHeader
-                isMobile={isMobile}
-                currentRoute={route}
-                onCollapse={this.props.globalStore.toggle}
-              />
+      <Layout theme="dark">
+        <GlobalHeader
+          isMobile={isMobile}
+          currentRoute={route}
+          onCollapse={this.props.globalStore.toggle}
+        />
 
-              <Layout className="basicLayout">
-                <SideMenu
-                  routers={routers}
-                  isMobile={isMobile}
-                  routeMap={this.breadcrumbNameMap}
-                  collapsed={collapse}
-                  onCollapse={this.props.globalStore.toggle}
-                />
-                <Layout className="contentLayout">
-                  <Content className="content">{this.props.children}</Content>
-                </Layout>
-              </Layout>
-            </Layout>
-          </div>
-        </div>
-      </DocumentTitle>
+        <Layout className="basicLayout">
+          <SideMenu
+            routers={routers}
+            isMobile={isMobile}
+            routeMap={this.breadcrumbNameMap}
+            collapsed={collapse}
+            onCollapse={this.props.globalStore.toggle}
+          />
+          <Layout className="contentLayout">
+            <Content className="content">{this.props.children}</Content>
+          </Layout>
+        </Layout>
+      </Layout>
     );
   }
 }

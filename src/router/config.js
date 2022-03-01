@@ -6,7 +6,7 @@ export default {
       menuName: '场地管理',
       menuUrl: '/',
       menuKey: 'site',
-      menuIcon: 'appstore',
+      menuIcon: 'DashboardOutlined',
       menuType: 'folder',
       menuOrder: 1,
       children: [
@@ -15,7 +15,7 @@ export default {
           menuName: '物业地查询',
           menuUrl: '/foo',
           menuKey: 'foo',
-          menuIcon: 'sketch',
+          menuIcon: '',
           menuType: 'page',
           menuOrder: 1,
           extraInfo: {}
@@ -25,7 +25,7 @@ export default {
           menuName: '物业地查询',
           menuUrl: '/bar',
           menuKey: 'bar',
-          menuIcon: 'sketch',
+          menuIcon: '',
           menuType: 'page',
           menuOrder: 1,
           extraInfo: {}

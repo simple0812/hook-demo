@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 
 const getStyleLoaders = (cssOptions, preProcessor, lessOptions) => {
@@ -44,7 +45,7 @@ const {
   addDecoratorsLegacy,
   addWebpackAlias,
   addWebpackModuleRule,
-  fixBabelImports,
+  addWebpackPlugin,
   addLessLoader
 } = require('customize-cra');
 module.exports = override(
@@ -64,18 +65,7 @@ module.exports = override(
       }
     }
   }),
-  // addLessLoader({
-  //   lessOptions: {
-  //     relativeUrls: false,
-  //     javascriptEnabled: true
-  //     // modifyVars: theme
-  //   }
-  // }),
-  // fixBabelImports('antd', {
-  //   // libraryName: 'antd',
-  //   libraryDirectory: 'es',
-  //   style: true
-  // }),
+
   // 装饰器
   addDecoratorsLegacy(),
 
@@ -83,6 +73,12 @@ module.exports = override(
   addWebpackAlias({
     '@': path.resolve(__dirname, 'src')
   }),
+
+  addWebpackPlugin(
+    new webpack.DefinePlugin({
+      process: { env: {} }
+    })
+  ),
 
   // svg loader
   addWebpackModuleRule({

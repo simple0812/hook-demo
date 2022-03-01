@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import styles from './index.less';
 // import { Icon } from '@ant-design/compatible';
+import AntIcon from '@/components/Icon/AntIcon';
 import { StarOutlined, StarFilled, StarTwoTone } from '@ant-design/icons';
 
 const { SubMenu } = Menu;
@@ -10,11 +11,11 @@ const { Sider } = Layout;
 
 const getIcon = (icon, theme) => {
   if (typeof icon === 'string' && icon.indexOf('http') === 0) {
-    return <img src={icon} alt="icon" className={styles.icon} />;
+    return <img src={icon} alt="icon" className="icon" />;
   }
-  // if (typeof icon === 'string') {
-  //   return <Icon type={icon} theme={theme || ''} />;
-  // }
+  if (typeof icon === 'string') {
+    return <AntIcon className="icon" type={icon} />;
+  }
   return icon;
 };
 
@@ -80,7 +81,7 @@ export default class SideMenu extends Component {
                     key={item.key}
                     title={
                       <span>
-                        {/* {getIcon(item.icon, item.theme)} */}
+                        {getIcon(item.icon, item.theme)}
                         {!collapsed ? item.label : ''}
                       </span>
                     }>

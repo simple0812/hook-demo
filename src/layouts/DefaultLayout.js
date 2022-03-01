@@ -149,13 +149,16 @@ export default class BasicLayout extends Component {
   }
 
   changeBrand() {
-    const pathname = window.location.hash.substr(1);
+    const pathname = window.location.pathname;
+    // const pathname = window.location.hash.substr(1);
     const currentRoute = [];
     const menuKey = Object.keys(this.breadcrumbNameMap).find((key) => {
       const reg = new RegExp(`${key}.*`);
       return reg.test(pathname);
     });
+
     const breads = this.breadcrumbNameMap[menuKey] || [];
+    console.log('zzzz22223444443332', pathname, menuKey, breads);
     breads.forEach((bread) => {
       const { label, path } = bread;
       currentRoute.push({ label, path });
@@ -189,8 +192,6 @@ export default class BasicLayout extends Component {
 
     const { route, isMobile } = this.state;
     const collapse = this.props.globalStore?.collapse;
-
-    console.log('zzzzzzzzz', routers);
 
     return (
       <DocumentTitle title={this.getPageTitle()}>

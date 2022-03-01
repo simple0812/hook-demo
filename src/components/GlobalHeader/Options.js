@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import styles from './index.less';
+import './index.less';
 import { Popover, message } from 'antd';
-import { Icon } from '@ant-design/compatible';
+import AntIcon from '@/components/Icon/AntIcon';
 import userLogo from '@/assets/img/user-avatar.jpg';
 import morning from '@/assets/img/morning.png';
 import morning2x from '@/assets/img/morning2x.png';
@@ -14,7 +14,6 @@ import night2x from '@/assets/img/night2x.png';
 
 import Debounce from 'lodash-decorators';
 import { inject } from 'mobx-react';
-import loginService from '@/service/loginService';
 
 const mesasge = {
   morning: {
@@ -39,7 +38,7 @@ const mesasge = {
   }
 };
 
-@inject('globalStore', 'loginStore')
+@inject('globalStore')
 class Options extends Component {
   constructor(props) {
     super(props);
@@ -48,7 +47,7 @@ class Options extends Component {
 
   logout = async () => {
     const redirectUrl = localStorage.getItem('redirectUrl') || '/';
-    const res = await this.props.loginStore.logout();
+    // const res = await this.props.loginStore.logout();
     message.success('退出成功');
     document.cookie = `sessionToken='';expires=-1`;
     localStorage.removeItem('userName');
@@ -83,7 +82,7 @@ class Options extends Component {
     const { img1, img2, text } = mesasge[currentTime];
     const content = (
       <span onClick={this.logout} style={{ cursor: 'pointer' }}>
-        <Icon type="logout" style={{ marginRight: 6 }} />
+        <AntIcon type="LoginOutlined" style={{ marginRight: 6 }} />
         退出登录
       </span>
     );
@@ -95,16 +94,16 @@ class Options extends Component {
       xName = xName !== 'undefined' ? xName : '';
     }
     return (
-      <div className={styles.optionsContainer}>
-        <div className={styles.trigger}>
-          <Icon
+      <div className="optionsContainer">
+        <div className="trigger">
+          <AntIcon
             style={{ fontSize: 16, color: 'rgba(0,0,0,0.65)' }}
-            type={collapse ? 'menu-unfold' : 'menu-fold'}
+            type={collapse ? 'MenuUnfoldOutlined' : 'MenuFoldOutlined'}
             onClick={this.toggle}
           />
         </div>
-        <span className={styles.userContainer}>
-          <span className={styles.message}>
+        <span className="userContainer">
+          <span className="message">
             {/* <img src={img1} srcSet={`${img2} 2x`} alt="" /> */}
             {text}
             <span style={{ marginLeft: '4px' }} title={xName}>
@@ -117,7 +116,10 @@ class Options extends Component {
             title=""
             trigger="hover"
             placement="bottomRight">
-            <Icon type="down" style={{ fontSize: 12, color: '#ADB6C2' }} />
+            <AntIcon
+              type="DownOutlined"
+              style={{ fontSize: 12, color: '#ADB6C2' }}
+            />
           </Popover>
         </span>
       </div>

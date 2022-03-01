@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {
   Routes,
-  Route,
   BrowserRouter as Router,
+  Route,
   Navigate
 } from 'react-router-dom';
 import { Provider } from 'mobx-react';
@@ -14,13 +14,7 @@ import 'antd/dist/antd.css';
 import store from '@/stores';
 
 import 'moment/locale/zh-cn';
-import Help from '@/containers/Help';
-import Foo from '@/containers/Foo';
-import Bar from '@/containers/Bar';
-import Exception404 from '@/containers/Exception/404';
-import Exception403 from '@/containers/Exception/403';
-import Exception500 from '@/containers/Exception/500';
-import { renderByDefaultLayout } from '@/router';
+import { renderRouter } from './router';
 
 class App extends Component {
   constructor(props) {
@@ -33,18 +27,7 @@ class App extends Component {
       <Provider {...store}>
         <Router>
           <ConfigProvider locale={zhCN}>
-            <Routes>
-              <Route path="/home" element={renderByDefaultLayout(Help)} />
-              <Route path="/foo" element={renderByDefaultLayout(Foo)} />
-              <Route path="/bar" element={renderByDefaultLayout(Bar)} />
-              <Route path="/403" element={<Exception403 />} />
-              <Route path="/404" element={<Exception404 />} />
-              <Route path="/500" element={<Exception500 />} />
-              <Route
-                path="*"
-                element={<Navigate to="/home" replace={false} />}
-              />
-            </Routes>
+            <Routes>{renderRouter()}</Routes>
           </ConfigProvider>
         </Router>
       </Provider>

@@ -49,6 +49,7 @@ const {
 } = require('customize-cra');
 module.exports = override(
   addLessLoader({
+    javascriptEnabled: true,
     lessOptions: {
       relativeUrls: false,
       javascriptEnabled: true,

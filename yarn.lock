@@ -7345,6 +7345,13 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
+lodash-decorators@^6.0.1:
+  version "6.0.1"
+  resolved "https://nodejs.bnq.com.cn/lodash-decorators/-/lodash-decorators-6.0.1.tgz#f5347811ee7792eba4719042354541578142273d"
+  integrity sha512-1M0YC8G3nFTkejZEk2ehyvryEdcqj6xATH+ybI8j53cLs/bKRsavaE//y7nz/A0vxEFhxYqev7vdWfsuTJ1AtQ==
+  dependencies:
+    tslib "^1.9.2"
+
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://nodejs.bnq.com.cn/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
@@ -8422,6 +8429,11 @@ path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "https://nodejs.bnq.com.cn/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
   integrity sha1-32BBeABfUi8V60SQ5yR6G/qmf4w=
+
+path-to-regexp@^6.2.0:
+  version "6.2.0"
+  resolved "https://nodejs.bnq.com.cn/path-to-regexp/-/path-to-regexp-6.2.0.tgz#f7b3803336104c346889adece614669230645f38"
+  integrity sha1-97OAMzYQTDRoia3s5hRmkjBkXzg=
 
 path-type@^4.0.0:
   version "4.0.0"
@@ -11484,7 +11496,7 @@ tsconfig-paths@^3.12.0:
     minimist "^1.2.0"
     strip-bom "^3.0.0"
 
-tslib@^1.8.1:
+tslib@^1.8.1, tslib@^1.9.2:
   version "1.14.1"
   resolved "https://nodejs.bnq.com.cn/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha1-zy04vcNKE0vK8QkcQfZhni9nLQA=

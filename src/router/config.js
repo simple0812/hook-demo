@@ -12,7 +12,7 @@ export default {
       children: [
         {
           id: 1,
-          menuName: '物业地查询',
+          menuName: '物业',
           menuUrl: '/foo',
           menuKey: 'foo',
           menuIcon: '',
@@ -22,7 +22,7 @@ export default {
         },
         {
           id: 2,
-          menuName: '物业地查询',
+          menuName: '物地',
           menuUrl: '/bar',
           menuKey: 'bar',
           menuIcon: '',
@@ -33,5 +33,16 @@ export default {
       ]
     }
   ],
-  routes: []
+  subPages: [
+    {
+      id: 1,
+      menuName: '帮助',
+      menuUrl: '/home',
+      menuKey: 'home',
+      menuIcon: '',
+      menuType: 'page',
+      menuOrder: 1,
+      extraInfo: {}
+    }
+  ]
 };

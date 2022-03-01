@@ -10,12 +10,10 @@ import { getRouterData } from '@/router';
 import SideMenu from '@/components/SideMenu';
 import GlobalHeader from '@/components/GlobalHeader';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import styles from './index.less';
+import './index.less';
 
 const { Header, Content, Sider, Footer } = Layout;
 const SubMenu = Menu.SubMenu;
-
-const { pathToRegexp } = require('path-to-regexp');
 
 @inject('globalStore')
 @observer
@@ -39,21 +37,6 @@ export default class BasicLayout extends Component {
   }
 
   componentDidMount() {
-    let pathname = window.location.hash.substr(1);
-    const currentRoute = [];
-    const menuKey = Object.keys(this.breadcrumbNameMap).find((key) => {
-      const reg = new RegExp(`${key}.*`);
-      return reg.test(pathname);
-    });
-    const breads = this.breadcrumbNameMap[menuKey] || [];
-    breads.forEach((bread) => {
-      const { label, path } = bread;
-      currentRoute.push({ label, path });
-    });
-    this.setState({
-      route: currentRoute
-    });
-    this.changeBrand = this.changeBrand.bind(this);
     this.enquireHandler = enquireScreen((mobile) => {
       const { isMobile } = this.state;
       if (isMobile !== mobile) {
@@ -62,40 +45,12 @@ export default class BasicLayout extends Component {
         });
       }
     });
-
-    window.addEventListener('hashchange', this.changeBrand);
   }
 
   componentWillUnmount() {
     unenquireScreen(this.enquireHandler);
-    window.removeEventListener('hashchange', this.changeBrand);
   }
-  getRouteList() {
-    const rouList = [];
-    const createRoute = (routes) => {
-      if (Object.prototype.toString.apply(routes) === '[object Array]') {
-        routes.forEach((item) => createRoute(item));
-      } else if (
-        Object.prototype.toString.apply(routes) === '[object Object]'
-      ) {
-        const { children = [] } = routes;
-        if (children.length > 0) {
-          createRoute(children);
-        } else {
-          rouList.push(
-            <Route
-              key={routes.path}
-              path={routes.path}
-              exact={routes.exact}
-              component={routes.render}
-            />
-          );
-        }
-      }
-    };
-    // createRoute(this.getMenuData());
-    return rouList;
-  }
+
   getLayoutStyle() {
     const { collapsed } = this.props;
     return {
@@ -148,25 +103,6 @@ export default class BasicLayout extends Component {
     return routerMap;
   }
 
-  changeBrand() {
-    const pathname = window.location.pathname;
-    // const pathname = window.location.hash.substr(1);
-    const currentRoute = [];
-    const menuKey = Object.keys(this.breadcrumbNameMap).find((key) => {
-      const reg = new RegExp(`${key}.*`);
-      return reg.test(pathname);
-    });
-
-    const breads = this.breadcrumbNameMap[menuKey] || [];
-    breads.forEach((bread) => {
-      const { label, path } = bread;
-      currentRoute.push({ label, path });
-    });
-    this.setState({
-      route: currentRoute
-    });
-  }
-
   getDefaultPath() {
     const routers = this.getMenuData();
     const getPath = (routers = []) => {
@@ -196,7 +132,6 @@ export default class BasicLayout extends Component {
       <Layout theme="dark">
         <GlobalHeader
           isMobile={isMobile}
-          currentRoute={route}
           onCollapse={this.props.globalStore.toggle}
         />
 

@@ -4,13 +4,12 @@ import pageConfig from './componentConfig';
 
 import routerConfig from './config.js';
 
-import Help from '@/containers/Help';
-import Foo from '@/containers/Foo';
-import Bar from '@/containers/Bar';
+import _ from 'lodash';
 import Exception404 from '@/containers/Exception/404';
 import Exception403 from '@/containers/Exception/403';
 import Exception500 from '@/containers/Exception/500';
 let menuData = routerConfig.menus;
+let subPages = routerConfig.subPages;
 
 export function renderByLayout(Com) {
   return (
@@ -20,20 +19,73 @@ export function renderByLayout(Com) {
   );
 }
 
+function getDefaultPath() {
+  const routers = generateMenu(menuData);
+  const getPath = (routers = []) => {
+    if (_.isEmpty(routers)) {
+      return '';
+    }
+    for (let i = 0; i < routers.length; i++) {
+      const route = routers[i];
+      if (_.has(route, 'path')) {
+        return route['path'];
+      }
+      if (route.children) {
+        const children = route.children || [];
+        return getPath(children);
+      }
+    }
+  };
+  let pathname = getPath(routers);
+  return pathname;
+}
+
+function getRouteList() {
+  const rouList = [];
+  const createRoute = (routes) => {
+    if (Object.prototype.toString.apply(routes) === '[object Array]') {
+      routes.forEach((item) => createRoute(item));
+    } else if (Object.prototype.toString.apply(routes) === '[object Object]') {
+      const { children = [] } = routes;
+      if (children.length > 0) {
+        createRoute(children);
+      } else {
+        rouList.push(
+          <Route
+            key={routes.path}
+            path={routes.path}
+            exact={routes.exact}
+            // component={routes.render}
+            element={renderByLayout(routes.render)}
+          />
+        );
+      }
+    }
+  };
+  // 生成菜单的路由
+  createRoute(generateMenu(menuData));
+  // 生成其他子页面路由
+  createRoute(generateMenu(subPages));
+  return rouList;
+}
+
 /**
  * 路由由2部分组成 一部分是侧边导航栏 一部分是其他路由（如详情页等）
  *
  */
 export function renderRouter() {
+  let xRouList = getRouteList();
+
   return (
     <>
-      <Route path="/home" element={renderByLayout(Help)} />
-      <Route path="/foo" element={renderByLayout(Foo)} />
-      <Route path="/bar" element={renderByLayout(Bar)} />
+      {xRouList}
       <Route path="/403" element={renderByLayout(Exception403)} />
       <Route path="/404" element={<Exception404 />} />
       <Route path="/500" element={<Exception500 />} />
-      <Route path="*" element={<Navigate to="/home" replace={false} />} />
+      <Route
+        path="*"
+        element={<Navigate to={getDefaultPath()} replace={false} />}
+      />
     </>
   );
 }

@@ -41,7 +41,7 @@ export default class BasicLayout extends Component {
       paddingLeft: collapsed ? '80px' : '256px'
     };
   }
-  
+
   getMenuData() {
     const routes = getRouterData();
     const addKey = (obj, superKey = '') => {

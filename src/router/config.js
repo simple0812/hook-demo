@@ -68,7 +68,7 @@ export default {
     {
       id: 1,
       menuName: '帮助',
-      menuUrl: '/home',
+      menuUrl: '/help',
       menuKey: 'home',
       menuIcon: '',
       menuType: 'page',

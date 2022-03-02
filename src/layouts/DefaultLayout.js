@@ -1,12 +1,8 @@
-import { Route, Routes, Switch, Redirect, Navigate } from 'react-router-dom';
 import React, { Component } from 'react';
-import DocumentTitle from 'react-document-title';
 import memoizeOne from 'memoize-one';
-import { enquireScreen, unenquireScreen } from 'enquire-js';
 import { inject, observer } from 'mobx-react';
 import _ from 'lodash';
 import { getRouterData } from '@/router';
-// import subPageConfig from '@/router/subPageConfig';
 import SideMenu from '@/components/SideMenu';
 import GlobalHeader from '@/components/GlobalHeader';
 import { Layout, Menu, Breadcrumb } from 'antd';
@@ -25,8 +21,7 @@ export default class BasicLayout extends Component {
         {
           label: '概览'
         }
-      ],
-      isMobile: false
+      ]
     };
     this.getBreadcrumbNameMap = memoizeOne(
       this.getBreadcrumbNameMap,
@@ -36,20 +31,9 @@ export default class BasicLayout extends Component {
     this.breadcrumbNameMap = this.getBreadcrumbNameMap();
   }
 
-  componentDidMount() {
-    this.enquireHandler = enquireScreen((mobile) => {
-      const { isMobile } = this.state;
-      if (isMobile !== mobile) {
-        this.setState({
-          isMobile: mobile
-        });
-      }
-    });
-  }
+  componentDidMount() {}
 
-  componentWillUnmount() {
-    unenquireScreen(this.enquireHandler);
-  }
+  componentWillUnmount() {}
 
   getLayoutStyle() {
     const { collapsed } = this.props;
@@ -57,14 +41,7 @@ export default class BasicLayout extends Component {
       paddingLeft: collapsed ? '80px' : '256px'
     };
   }
-  getPageTitle() {
-    let pathname = window.location.hash.substr(1);
-    const currentRoute = this.breadcrumbNameMap[pathname] || [];
-    const route = currentRoute.find((item) => item.path) || {};
-    const { label = '百安居租赁系统' } = route;
-    return label;
-  }
-
+  
   getMenuData() {
     const routes = getRouterData();
     const addKey = (obj, superKey = '') => {
@@ -122,23 +99,15 @@ export default class BasicLayout extends Component {
 
   render() {
     const routers = this.getMenuData();
-    // const rouList = this.getRouteList();
-    // const pathname = this.getDefaultPath();
-
-    const { route, isMobile } = this.state;
     const collapse = this.props.globalStore?.collapse;
 
     return (
       <Layout theme="dark">
-        <GlobalHeader
-          isMobile={isMobile}
-          onCollapse={this.props.globalStore.toggle}
-        />
+        <GlobalHeader onCollapse={this.props.globalStore.toggle} />
 
         <Layout className="basicLayout">
           <SideMenu
             routers={routers}
-            isMobile={isMobile}
             routeMap={this.breadcrumbNameMap}
             collapsed={collapse}
             onCollapse={this.props.globalStore.toggle}

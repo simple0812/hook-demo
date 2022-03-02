@@ -8,14 +8,17 @@ import _ from 'lodash';
 import Exception404 from '@/containers/Exception/404';
 import Exception403 from '@/containers/Exception/403';
 import Exception500 from '@/containers/Exception/500';
+import DocumentTitle from '@/components/DocumentTitle';
 let menuData = routerConfig.menus;
 let subPages = routerConfig.subPages;
 
-export function renderByLayout(Com) {
+export function renderByLayout(Com, title) {
   return (
-    <DefaultLayout>
-      <Com />
-    </DefaultLayout>
+    <DocumentTitle title={title}>
+      <DefaultLayout>
+        <Com />
+      </DefaultLayout>
+    </DocumentTitle>
   );
 }
 
@@ -56,7 +59,7 @@ function getRouteList() {
             path={routes.path}
             exact={routes.exact}
             // component={routes.render}
-            element={renderByLayout(routes.render)}
+            element={renderByLayout(routes.render, routes.label)}
           />
         );
       }

@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import mobxInjectStore from '@/utils/mobxInjectStore';
-import { toJS } from 'mobx';
 import Test from '@/utils/test';
 
 function Foo(props) {
@@ -11,12 +10,12 @@ function Foo(props) {
   }, []);
   return (
     <div>
-      <div>Foo{process.env.REACT_APP_ZX}aaa1a</div>
+      <div>Foo{process.env.REACT_APP_ZX}aa231a</div>
       <div onClick={props.xxx.toggle}>{props.xxx.locale}</div>
       <div>{props.xxx.double}</div>
       <div>
         <div onClick={props.xxx.$getDataList}>====================</div>
-        {toJS(props.xxx.$dataList)?.map((item, index) => (
+        {props.xxx.$dataList?.map((item, index) => (
           <div key={index}>{item}</div>
         ))}
       </div>

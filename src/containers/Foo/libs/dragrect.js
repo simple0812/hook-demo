@@ -1,6 +1,6 @@
 import $ from 'jQuery';
 import { windowToCanvas, cancelDefaultEvent } from './helper';
-import datasource from './datasource';
+import datasource from '@/visualEditor/libs/datasource';
 import _ from 'lodash';
 
 let RATIO = 1;
@@ -62,14 +62,10 @@ export default (instance) => {
   let cvs = document.querySelector('#canvas');
   let tempCtx = tempCvs.getContext('2d');
 
-  $('.component-item').each(function (i, o) {
+  $('.ve-dragnode').each(function (i, o) {
     o.ondragstart = aDragStart;
     o.ondragend = dragEnd;
   });
-  cvsarea.ondragenter = function (evt) {
-    console.log('ondragenter', evt);
-    return true;
-  };
 
   cvsarea.ondragover = function (e) {
     e = e || window.event;
@@ -121,7 +117,7 @@ export default (instance) => {
 
     if (xcomponent) {
       xcomponent = _.cloneDeep(xcomponent);
-      xcomponent.$id = Math.random();
+      xcomponent.$id = 'ele_' + String(Math.random()).slice(2);
     }
 
     eles.push(xcomponent);

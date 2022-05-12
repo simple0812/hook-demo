@@ -9,7 +9,9 @@ import { windowToCanvas } from './libs/helper';
 import './index.less';
 import './canvas.less';
 
-import datasource from './libs/datasource';
+import datasource from '@/visualEditor/libs/datasource';
+import factory from '@/visualEditor/libs/factory';
+import VisualMask from '@/visualEditor/VisualMask';
 let moveFn = _.throttle((e) => {
   // var src = e.target || e.srcElement;
   let cvs = document.querySelector('#canvas');
@@ -47,11 +49,11 @@ class FooPage extends Component {
       <div className="fooPage">
         <div className="leftSide">
           {datasource.map((item) => (
-            <div className="component-item" key={item.$name}>
+            <div className="component-item " key={item.$name}>
               <div
                 draggable="true"
                 data-component={item.$component}
-                className="draggable-mask"></div>
+                className="draggable-mask ve-dragnode"></div>
               {item.$name}
             </div>
           ))}
@@ -64,13 +66,30 @@ class FooPage extends Component {
             <canvas id="canvas" width={375} height={720}></canvas>
             <div id="bgcanvas" width={375} height={720}>
               {eles.map((item) => {
-                return React.createElement(
-                  item.$component,
-                  {
-                    ...item.$attr,
-                    key: item.$id
-                  },
-                  item.$name
+                let xCom = factory(item.$component);
+                if (!xCom) {
+                  return '';
+                }
+                return (
+                  <VisualMask
+                    key={item.$id}
+                    id={item.$id}
+                    selectedId={this.state.selectedId}
+                    onSelect={(id) =>
+                      this.setState({
+                        selectedId: id
+                      })
+                    }>
+                    {React.createElement(
+                      xCom,
+                      {
+                        ...item.$attr,
+                        key: item.$id,
+                        id: item.$id
+                      },
+                      item.$name
+                    )}
+                  </VisualMask>
                 );
               })}
             </div>

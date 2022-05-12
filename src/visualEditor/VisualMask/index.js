@@ -11,6 +11,18 @@ class VisualMaskCom extends Component {
     };
   }
 
+  handleDragStart = (evt) => {
+    const { onSelect, id, selectedId } = this.props;
+    let isActive = id && selectedId === id;
+    console.log('handleDragStart', isActive, selectedId);
+
+    if (!isActive) {
+      return false;
+    }
+
+    return true;
+  };
+
   render() {
     const { onSelect, id, selectedId } = this.props;
     let isActive = id && selectedId === id;
@@ -20,6 +32,7 @@ class VisualMaskCom extends Component {
           actived: isActive
         })}
         id={id}
+        onDragStart={this.handleDragStart}
         draggable={isActive}
         onClick={() => {
           if (onSelect) {

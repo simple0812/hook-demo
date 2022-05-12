@@ -8,53 +8,8 @@ let RATIO = 1;
 var dragInfo = {
   ele: null,
   percentX: 0,
-  percentY: 0,
-  init: function () {
-    this.ele = null;
-    this.percentX = 0;
-    this.percentY = 0;
-    this.image = null;
-  }
+  percentY: 0
 };
-
-function aDragStart(e) {
-  e = e || window.event;
-  var target = e.target || e.srcElement;
-  if (!target) return;
-  e.dataTransfer.setData('TEXT', $(target).attr('title') || '图片');
-  //   if (drawInfo.operRect && drawInfo.operRect.isSelected) {
-  //     drawInfo.operRect.isSelected = false;
-  //     render();
-  //     clearTempCvs();
-  //     drawInfo.init();
-  //   }
-
-  dragInfo.ele = target;
-  dragInfo.percentX = 0.5;
-  dragInfo.percentY = 0.5;
-  //e.preventDefault();
-  //return true;
-}
-
-function renderText(tag, offsetX, offsetY, type) {
-  //   var rect = getRectByType(type);
-  //   offsetX -= rect.width * dragInfo.percentX;
-  //   offsetY -= rect.height * dragInfo.percentY;
-  //   rect = rect.changePlace(
-  //     new Rect(offsetX, offsetY, offsetX + rect.width, offsetY + rect.height)
-  //   );
-  //   rect.tag = tag || '图片';
-  //   var tempRect = null;
-  //   if (!checkRectIsCoverRects(rect, 2)) {
-  //     //面板与文字重合 将文字作为面板的子内容
-  //     if ((tempRect = checkRectIsCoverRects(rect, 3)))
-  //       tempRect.setChildrenRect(rect);
-  //     else relativePlaylist.children[viewIndex].children.push(rect);
-  //     if (rect.constructor == MediaZone) rect.addPlaylist();
-  //     render();
-  //   }
-  //   dragInfo.init();
-}
 
 export default (instance) => {
   let tempCvs = document.querySelector('#topcanvas');
@@ -62,10 +17,8 @@ export default (instance) => {
   let cvs = document.querySelector('#canvas');
   let tempCtx = tempCvs.getContext('2d');
 
-  $('.ve-dragnode').each(function (i, o) {
-    o.ondragstart = aDragStart;
-    o.ondragend = dragEnd;
-  });
+  $('.ve-dragnode').on('dragstart', aDragStart);
+  $('.ve-dragnode').on('dragend', dragEnd);
 
   cvsarea.ondragover = function (e) {
     e = e || window.event;
@@ -130,5 +83,21 @@ export default (instance) => {
 
   function dragEnd() {
     tempCvs.width += 0;
+  }
+  function aDragStart(e) {
+    e = e || window.event;
+    var target = e.target || e.srcElement;
+    if (!target) return;
+
+    console.log(
+      'zzzzzzzzzzzzzzzzzzzzzdddd',
+      target,
+      $(target).attr('id'),
+      instance.state.selectedId
+    );
+
+    dragInfo.ele = target;
+    dragInfo.percentX = 0.5;
+    dragInfo.percentY = 0.5;
   }
 };

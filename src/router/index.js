@@ -12,7 +12,11 @@ import DocumentTitle from '@/components/DocumentTitle';
 let menuData = routerConfig.menus;
 let subPages = routerConfig.subPages;
 
-export function renderByLayout(Com, title) {
+export function renderByLayout(Com, title, routeData) {
+  console.log('routeData', routeData);
+  if (routeData?.layout) {
+    return <Com />;
+  }
   return (
     <DocumentTitle title={title}>
       <DefaultLayout>
@@ -59,7 +63,7 @@ function getRouteList() {
             path={routes.path}
             exact={routes.exact}
             // component={routes.render}
-            element={renderByLayout(routes.render, routes.label)}
+            element={renderByLayout(routes.render, routes.label, routes)}
           />
         );
       }
@@ -93,7 +97,16 @@ export function renderRouter() {
   );
 }
 
-const createMenuItem = (label, path, exact, key, icon, order, theme) => {
+const createMenuItem = (
+  label,
+  path,
+  exact,
+  key,
+  icon,
+  order,
+  theme,
+  layout
+) => {
   let component = pageConfig[key] || null;
   if (!component) {
     component = pageConfig['exception404'];
@@ -106,7 +119,8 @@ const createMenuItem = (label, path, exact, key, icon, order, theme) => {
     icon,
     render: component.default,
     range: order,
-    theme
+    theme,
+    layout
   };
   return menuItem;
 };
@@ -122,6 +136,7 @@ const generateMenu = (menus = []) => {
       menuType = 'page',
       menuOrder = 0,
       theme = '',
+      layout = '',
       children = []
     } = item;
     if (menuType === 'folder' && children.length > 0) {
@@ -130,6 +145,7 @@ const generateMenu = (menus = []) => {
         key: menuKey,
         icon: menuIcon,
         theme,
+        layout,
         range: menuOrder,
         children: generateMenu(children)
       };
@@ -142,7 +158,8 @@ const generateMenu = (menus = []) => {
         menuKey,
         menuIcon,
         menuOrder,
-        theme
+        theme,
+        layout
       );
       menuItems.push(menuItem);
     } else if (menuType === 'other') {

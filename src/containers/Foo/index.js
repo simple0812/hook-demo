@@ -1,28 +1,91 @@
-import { useEffect } from 'react';
+import React, { useEffect, Component } from 'react';
 import mobxInjectStore from '@/utils/mobxInjectStore';
 import Test from '@/utils/test';
+import _ from 'lodash';
+import $ from 'jQuery';
+import initCoord, { drawCoordLine } from './libs/initCvs';
+import dragrect from './libs/dragrect';
+import { windowToCanvas } from './libs/helper';
+import './index.less';
+import './canvas.less';
 
-function Foo(props) {
-  let a = Test.getInstance().bar;
+import datasource from './libs/datasource';
+let moveFn = _.throttle((e) => {
+  // var src = e.target || e.srcElement;
+  let cvs = document.querySelector('#canvas');
+  var loc = windowToCanvas(cvs, e.clientX, e.clientY);
+  var x = loc.x;
+  var y = loc.y;
+  // if (x < 0 || y < 0) {
+  //   return;
+  // }
+  drawCoordLine(x, y);
+}, 1000 / 60);
 
-  useEffect(() => {
-    props.xxx.$getDataList();
-  }, []);
-  return (
-    <div>
-      <div>Foo{process.env.REACT_APP_ZX}aa231a</div>
-      <div onClick={props.xxx.toggle}>{props.xxx.locale}</div>
-      <div>{props.xxx.double}</div>
-      <div>
-        <div onClick={props.xxx.$getDataList}>====================</div>
-        {props.xxx.$dataList?.map((item, index) => (
-          <div key={index}>{item}</div>
-        ))}
+class FooPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      eles: []
+    };
+  }
+
+  componentDidMount() {
+    initCoord();
+    dragrect(this);
+
+    window.addEventListener('mousemove', moveFn);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('mousemove', moveFn);
+  }
+
+  render() {
+    const { eles } = this.state;
+    return (
+      <div className="fooPage">
+        <div className="leftSide">
+          {datasource.map((item) => (
+            <div className="component-item" key={item.$name}>
+              <div
+                draggable="true"
+                data-component={item.$component}
+                className="draggable-mask"></div>
+              {item.$name}
+            </div>
+          ))}
+        </div>
+        <div id="activeArea">
+          <div className="blankdiv"></div>
+          <canvas id="xCoord"></canvas>
+          <canvas id="yCoord"></canvas>
+          <div id="cvsarea">
+            <canvas id="canvas" width={375} height={720}></canvas>
+            <div id="bgcanvas" width={375} height={720}>
+              {eles.map((item) => {
+                return React.createElement(
+                  item.$component,
+                  {
+                    ...item.$attr,
+                    key: item.$id
+                  },
+                  item.$name
+                );
+              })}
+            </div>
+            <canvas id="coordcanvas" width={375} height={720}></canvas>
+            <canvas
+              id="topcanvas"
+              className="topcanvas"
+              width={375}
+              height={720}></canvas>
+          </div>
+        </div>
+        <div className="rightSide"></div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-export default mobxInjectStore(({ globalStore }) => ({ xxx: globalStore }))(
-  Foo
-);
+export default FooPage;

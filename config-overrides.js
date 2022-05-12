@@ -46,7 +46,9 @@ const {
   addWebpackAlias,
   addWebpackModuleRule,
   addWebpackPlugin,
-  addLessLoader
+  addLessLoader,
+  addWebpackExternals,
+  disableEsLint
 } = require('customize-cra');
 module.exports = override(
   addLessLoader({
@@ -68,6 +70,7 @@ module.exports = override(
 
   // 装饰器
   addDecoratorsLegacy(),
+  disableEsLint(),
 
   //路由简写
   addWebpackAlias({
@@ -79,6 +82,10 @@ module.exports = override(
       process: { env: {} }
     })
   ),
+
+  addWebpackExternals({
+    jQuery: 'jQuery'
+  }),
 
   // svg loader
   addWebpackModuleRule({

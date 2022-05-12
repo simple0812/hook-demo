@@ -18,12 +18,13 @@ export default {
           menuIcon: '',
           menuType: 'page',
           menuOrder: 1,
+          layout: 'blank',
           extraInfo: {}
         },
         {
           id: 2,
           menuName: '物地',
-          menuUrl: '/bar',
+          menuUrl: '/bar.html',
           menuKey: 'bar',
           menuIcon: '',
           menuType: 'page',

@@ -21,7 +21,8 @@ class Loading extends Component {
             fontSize: 36,
             color: '#aaa',
             ...style
-          }}>
+          }}
+        >
           <Icon type="loading" />
         </div>
       );
@@ -39,7 +40,8 @@ class Loading extends Component {
             fontSize: 36,
             color: '#aaa',
             ...style
-          }}>
+          }}
+        >
           <Empty />
         </div>
       );

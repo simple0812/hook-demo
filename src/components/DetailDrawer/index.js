@@ -49,7 +49,8 @@ export default class DetailForm extends Component {
         width={width || 958}
         placement="right"
         onClose={this.onClose}
-        visible={visible}>
+        visible={visible}
+      >
         {loading === 'pending' ? (
           <Spin />
         ) : (

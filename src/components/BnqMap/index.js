@@ -138,7 +138,8 @@ class BnqMap extends Component {
               border: '1px solid #C0C0C0',
               width: 150,
               display: 'none'
-            }}></div>
+            }}
+          ></div>
         </div>
         <div className="map-container" ref={(x) => (this.rootRef = x)} />
       </div>

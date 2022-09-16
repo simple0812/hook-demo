@@ -15,7 +15,7 @@
   },
   "rules": {
     "import/no-anonymous-default-export": "off",
-    "prettier/prettier": "error", // prettier配置
+    "prettier/prettier": "off", // prettier配置
     "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则
     "react-hooks/exhaustive-deps": "off", // 检查 effect 的依赖
     // "indent": ["error",2], //缩进默认为2

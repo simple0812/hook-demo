@@ -12,7 +12,8 @@ const BSelect = (props) => {
       options={options}
       value={value}
       placeholder={!disabled ? placeholder : ''}
-      onChange={onChange}></Select>
+      onChange={onChange}
+    ></Select>
   );
 };
 export default BSelect;

@@ -9,7 +9,8 @@ const Exception500 = () => (
     title="500"
     desc="抱歉，服务器出错了"
     linkElement={Link}
-    backText="返回首页">
+    backText="返回首页"
+  >
     <Svg500 />
   </Exception>
 );

@@ -7,7 +7,8 @@ const Exception403 = () => (
     title="403"
     desc="抱歉，你无权访问该页面"
     linkElement={Link}
-    backText="返回首页">
+    backText="返回首页"
+  >
     <Svg403 />
   </Exception>
 );

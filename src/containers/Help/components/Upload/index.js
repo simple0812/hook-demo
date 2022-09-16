@@ -175,7 +175,8 @@ export default class UploadEditor extends React.Component {
             evt.preventDefault();
             evt.stopPropagation();
           }}
-          className="bnq-upload-mask">
+          className="bnq-upload-mask"
+        >
           <Icon
             onClick={this.handlePreview.bind(this, xVal)}
             type="eye"
@@ -326,7 +327,8 @@ export default class UploadEditor extends React.Component {
         beforeUpload={this.handleBefore}
         onChange={this.handleChange}
         customRequest={this.handleCustomRequest}
-        {...restProps}>
+        {...restProps}
+      >
         {children || this.renderImage()}
       </Upload>
     );

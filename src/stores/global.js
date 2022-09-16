@@ -1,8 +1,8 @@
 import { makeAutoObservable } from 'mobx';
 import _ from 'lodash';
 
-import globalService from '@/services/global';
-import testService from '@/services/test';
+import globalService from '@/service/global';
+import testService from '@/service/test';
 import { injectService } from './storeHelper';
 
 class GlobalStore {

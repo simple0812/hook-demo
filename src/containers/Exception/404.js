@@ -8,7 +8,8 @@ const Exception404 = () => (
     title="404"
     desc="抱歉，你访问的页面不存在面"
     linkElement={Link}
-    backText="返回首页">
+    backText="返回首页"
+  >
     <Svg404 />
   </Exception>
 );

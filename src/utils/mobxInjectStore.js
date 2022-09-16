@@ -33,7 +33,11 @@ export default function mobxInjectStore(...args) {
       }
 
       // return useObserver(() => baseComponent({ ...ownProps, ...currStores }));
-      return <Observer>{() => baseComponent({ ...ownProps, ...currStores })}</Observer>
+      return (
+        <Observer>
+          {() => baseComponent({ ...ownProps, ...currStores })}
+        </Observer>
+      );
     };
     component.displayName = baseComponent.name;
     return component;

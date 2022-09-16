@@ -24,7 +24,7 @@ export default {
         {
           id: 2,
           menuName: '物地',
-          menuUrl: '/bar.html',
+          menuUrl: '/bar',
           menuKey: 'bar',
           menuIcon: '',
           menuType: 'page',

@@ -209,7 +209,8 @@ class YLMap extends Component {
               <Option
                 key={item.id}
                 value={item.id}
-                className={styles.addressOption}>
+                className={styles.addressOption}
+              >
                 <div className={styles.addressOptionContent}>
                   <div className={styles.poiName}>
                     <MapIcon />
@@ -218,7 +219,8 @@ class YLMap extends Component {
                   <div className={styles.poiAddress}>{item.address}</div>
                 </div>
               </Option>
-            ))}>
+            ))}
+          >
             <Input
               allowClear
               className={styles.searchInputWrapper}
@@ -227,7 +229,8 @@ class YLMap extends Component {
                   className="search-btn"
                   style={{ marginRight: -12, marginLeft: 5 }}
                   icon="search"
-                  type="primary">
+                  type="primary"
+                >
                   搜 索
                 </Button>
               }
@@ -238,7 +241,8 @@ class YLMap extends Component {
             <div className={styles.publicSentiment} id="public-sentiment">
               <div
                 className={styles.publicSentimentName}
-                hidden={!selectItem.name}>
+                hidden={!selectItem.name}
+              >
                 {selectItem.name}
               </div>
               <div className={styles.publicSentimentAddress}>
@@ -250,13 +254,15 @@ class YLMap extends Component {
           <div
             className={styles.deleteWrapper}
             onClick={this.handleClear}
-            hidden={_.isEmpty(selectItem)}>
+            hidden={_.isEmpty(selectItem)}
+          >
             <DeleteSvg />
           </div>
           <div
             className={styles.successWrapper}
             onClick={this.handleLocate}
-            hidden={_.isEmpty(selectItem)}>
+            hidden={_.isEmpty(selectItem)}
+          >
             <SuccessSvg />
           </div>
         </div>

@@ -10,7 +10,8 @@ const BRadio = (props) => {
       options={options}
       value={value}
       disabled={disabled}
-      onChange={onChange}></Radio.Group>
+      onChange={onChange}
+    ></Radio.Group>
   );
 };
 export default BRadio;

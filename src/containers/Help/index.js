@@ -85,7 +85,8 @@ export default () => {
             key={item.key}
             style={{ marginBottom: 10 }}
             {...item.fromItemProps}
-            {...ctrlData.fromItemProps}>
+            {...ctrlData.fromItemProps}
+          >
             {React.createElement(ctrlData.control, {
               ...item.controlProps,
               ...ctrlData.controlProps
@@ -110,12 +111,14 @@ export default () => {
       }}
       onValuesChange={onValuesChange}
       onFinishFailed={onFinishFailed}
-      autoComplete="off">
+      autoComplete="off"
+    >
       <Row>
         {__renderFormItem()}
         <Col
           span={6}
-          style={{ paddingLeft: 5, display: 'flex', alignItems: 'center' }}>
+          style={{ paddingLeft: 5, display: 'flex', alignItems: 'center' }}
+        >
           <Form.Item>
             <Button type="primary" ghost onClick={handleReset}>
               重置
@@ -125,7 +128,8 @@ export default () => {
             <Button
               type="primary"
               style={{ margin: '0 5px' }}
-              htmlType="submit">
+              htmlType="submit"
+            >
               搜索
             </Button>
           </Form.Item>

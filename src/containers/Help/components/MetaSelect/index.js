@@ -58,7 +58,8 @@ class MetaSelect extends Component {
         labelInValue
         filterOption={false}
         onSearch={this.getOptions}
-        {...restProps}>
+        {...restProps}
+      >
         {(dataList || []).map((item) => (
           <Option value={item[idKey]} key={item[idKey]}>
             {item[labelKey] + `(${item[idKey]})`}

@@ -20,7 +20,8 @@ export class VolumeIcon extends Component {
             overflow: 'hidden'
           }}
           version="1.1"
-          xmlns="http://www.w3.org/2000/svg">
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <defs>
             <symbol id="icon-volume-medium" viewBox="0 0 32 32">
               <title>音量</title>

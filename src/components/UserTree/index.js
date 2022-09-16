@@ -159,7 +159,8 @@ export default class UserTree extends React.Component {
             onCheck={this.onCheck}
             onExpand={this.onExpand}
             expandedKeys={expandedKeys}
-            autoExpandParent={autoExpandParent}>
+            autoExpandParent={autoExpandParent}
+          >
             {loop(dataTree)}
           </Tree>
         </div>
@@ -194,7 +195,8 @@ export default class UserTree extends React.Component {
                     key={index}
                     onChange={(e) =>
                       this.onUnCheckedTemp(e.target.checked, item)
-                    }>
+                    }
+                  >
                     {item.name || ''}
                   </Checkbox>
                 );

@@ -59,7 +59,8 @@ class YlDrawer extends Component {
         }}
         className={classNames(styles.drawerComp, className)}
         visible={!!visible}
-        {...restProps}>
+        {...restProps}
+      >
         <div className="draw-content">{children}</div>
         <div className="draw-footer">
           {_.isFunction(renderFooter) ? (
@@ -68,7 +69,8 @@ class YlDrawer extends Component {
             <>
               <Button
                 onClick={this.handelClose.bind(this, null)}
-                style={{ marginRight: 8 }}>
+                style={{ marginRight: 8 }}
+              >
                 {cancelText || '取消'}
               </Button>
               <Button type="primary" onClick={this.props.onOk}>

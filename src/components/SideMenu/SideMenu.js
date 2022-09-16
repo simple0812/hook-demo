@@ -66,12 +66,14 @@ export default class SideMenu extends Component {
         id="bnq_menu_side"
         width={208}
         collapsible
-        collapsed={collapsed}>
+        collapsed={collapsed}
+      >
         <Menu
           theme="dark"
           mode="inline"
           selectedKeys={[pathname]}
-          defaultOpenKeys={[superKey]}>
+          defaultOpenKeys={[superKey]}
+        >
           {routers.map((item, key) => {
             const { children = [], show = true } = item;
             if (show) {
@@ -84,7 +86,8 @@ export default class SideMenu extends Component {
                         {getIcon(item.icon, item.theme)}
                         {!collapsed ? item.label : ''}
                       </span>
-                    }>
+                    }
+                  >
                     {this.createItem(children)}
                   </SubMenu>
                 );

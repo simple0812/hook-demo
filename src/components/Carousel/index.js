@@ -58,15 +58,18 @@ class Carousel extends Component {
         <div
           key={index}
           className={styles.itemWrap}
-          style={Object.assign({}, { height: 20 }, style)}>
+          style={Object.assign({}, { height: 20 }, style)}
+        >
           <div
             className={styles.content}
-            style={{ lineHeight: style.lineHeight || '20px' }}>
+            style={{ lineHeight: style.lineHeight || '20px' }}
+          >
             {item.title}
           </div>
           <div
             className={styles.time}
-            style={{ lineHeight: style.lineHeight || '20px' }}>
+            style={{ lineHeight: style.lineHeight || '20px' }}
+          >
             {item.publishTime}
           </div>
         </div>
@@ -122,7 +125,8 @@ class Carousel extends Component {
         onMouseEnter={this.onScrollChange}
         onMouseLeave={this.onScrollChange}
         className={styles.wrapper}
-        style={{ height, overflow: 'hidden' }}>
+        style={{ height, overflow: 'hidden' }}
+      >
         <Icon
           type="left"
           onClick={this.onLastIndex}

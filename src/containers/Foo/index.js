@@ -1,28 +1,5 @@
-import React, { useEffect, Component } from 'react';
-import mobxInjectStore from '@/utils/mobxInjectStore';
-import Test from '@/utils/test';
-import _ from 'lodash';
-import $ from 'jQuery';
-import initCoord, { drawCoordLine } from './libs/initCvs';
-import dragrect from './libs/dragrect';
-import { windowToCanvas } from './libs/helper';
-import './index.less';
-import './canvas.less';
-
-import datasource from '@/visualEditor/libs/datasource';
-import factory from '@/visualEditor/libs/factory';
-import VisualMask from '@/visualEditor/VisualMask';
-let moveFn = _.throttle((e) => {
-  // var src = e.target || e.srcElement;
-  let cvs = document.querySelector('#canvas');
-  var loc = windowToCanvas(cvs, e.clientX, e.clientY);
-  var x = loc.x;
-  var y = loc.y;
-  // if (x < 0 || y < 0) {
-  //   return;
-  // }
-  drawCoordLine(x, y);
-}, 1000 / 60);
+import React, { Component } from 'react';
+import { Form, Input, Checkbox, Button } from 'antd';
 
 class FooPage extends Component {
   constructor(props) {
@@ -32,77 +9,83 @@ class FooPage extends Component {
     };
   }
 
-  componentDidMount() {
-    initCoord();
-    dragrect(this);
+  componentDidMount() {}
 
-    window.addEventListener('mousemove', moveFn);
-  }
+  componentWillUnmount() {}
 
-  componentWillUnmount() {
-    window.removeEventListener('mousemove', moveFn);
-  }
+  onFinish = (values) => {
+    console.log('Success:', values);
+  };
+
+  onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
 
   render() {
-    const { eles } = this.state;
     return (
-      <div className="fooPage">
-        <div className="leftSide">
-          {datasource.map((item) => (
-            <div className="component-item " key={item.$name}>
-              <div
-                draggable="true"
-                data-component={item.$component}
-                className="draggable-mask ve-dragnode"></div>
-              {item.$name}
-            </div>
-          ))}
-        </div>
-        <div id="activeArea">
-          <div className="blankdiv"></div>
-          <canvas id="xCoord"></canvas>
-          <canvas id="yCoord"></canvas>
-          <div id="cvsarea">
-            <canvas id="canvas" width={375} height={720}></canvas>
-            <div id="bgcanvas" width={375} height={720}>
-              {eles.map((item) => {
-                let xCom = factory(item.$component);
-                if (!xCom) {
-                  return '';
-                }
-                return (
-                  <VisualMask
-                    key={item.$id}
-                    id={item.$id}
-                    selectedId={this.state.selectedId}
-                    onSelect={(id) =>
-                      this.setState({
-                        selectedId: id
-                      })
-                    }>
-                    {React.createElement(
-                      xCom,
-                      {
-                        ...item.$attr,
-                        key: item.$id,
-                        id: item.$id
-                      },
-                      item.$name
-                    )}
-                  </VisualMask>
-                );
-              })}
-            </div>
-            <canvas id="coordcanvas" width={375} height={720}></canvas>
-            <canvas
-              id="topcanvas"
-              className="topcanvas"
-              width={375}
-              height={720}></canvas>
-          </div>
-        </div>
-        <div className="rightSide"></div>
-      </div>
+      <Form
+        name="basic"
+        labelCol={{
+          span: 8
+        }}
+        wrapperCol={{
+          span: 16
+        }}
+        initialValues={{
+          remember: true
+        }}
+        onFinish={this.onFinish}
+        onFinishFailed={this.onFinishFailed}
+        autoComplete="off"
+      >
+        <Form.Item
+          label="Username"
+          name="username"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your username!'
+            }
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your password!'
+            }
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item
+          name="remember"
+          valuePropName="checked"
+          wrapperCol={{
+            offset: 8,
+            span: 16
+          }}
+        >
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+
+        <Form.Item
+          wrapperCol={{
+            offset: 8,
+            span: 16
+          }}
+        >
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
     );
   }
 }

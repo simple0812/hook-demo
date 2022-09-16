@@ -38,7 +38,8 @@ class VisualMaskCom extends Component {
           if (onSelect) {
             onSelect(id);
           }
-        }}>
+        }}
+      >
         {this.props.children}
         <div className="visualMaskCom-mask"></div>
         <div className="visualMaskCom-border"></div>

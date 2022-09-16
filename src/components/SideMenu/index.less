@@ -1,9 +1,11 @@
 @import '~antd/lib/style/themes/default.less';
 
 @nav-header-height: 64px;
-@sider-bg-color: linear-gradient(39deg,
-    rgba(41, 127, 217, 1) 0%,
-    rgba(86, 161, 240, 1) 100%);
+@sider-bg-color: linear-gradient(
+  39deg,
+  rgba(41, 127, 217, 1) 0%,
+  rgba(86, 161, 240, 1) 100%
+);
 @item-selected-bg-color: #f4f5fa;
 @item-selected-text-color: rgba(51, 124, 219, 1);
 
@@ -85,7 +87,6 @@
           }
 
           .ant-menu-submenu-arrow {
-
             &::before,
             &::after {
               background: #fff;
@@ -107,7 +108,7 @@
 
     :global(.ant-menu-root) {
       overflow-y: auto;
-      height:~'calc(100vh - @{nav-header-height})';
+      height: ~'calc(100vh - @{nav-header-height})';
     }
   }
 
@@ -141,23 +142,31 @@
   }
 
   .ant-menu-inline-collapsed {
-
-    &>.ant-menu-item .sider-menu-item-img+span,
-    &>.ant-menu-item-group>.ant-menu-item-group-list>.ant-menu-item .sider-menu-item-img+span,
-    &>.ant-menu-submenu>.ant-menu-submenu-title .sider-menu-item-img+span {
+    & > .ant-menu-item .sider-menu-item-img + span,
+    &
+      > .ant-menu-item-group
+      > .ant-menu-item-group-list
+      > .ant-menu-item
+      .sider-menu-item-img
+      + span,
+    &
+      > .ant-menu-submenu
+      > .ant-menu-submenu-title
+      .sider-menu-item-img
+      + span {
       max-width: 0;
       display: inline-block;
       opacity: 0;
     }
   }
 
-  .ant-menu-item .sider-menu-item-img+span,
-  .ant-menu-submenu-title .sider-menu-item-img+span {
+  .ant-menu-item .sider-menu-item-img + span,
+  .ant-menu-submenu-title .sider-menu-item-img + span {
     transition: opacity 0.3s @ease-in-out, width 0.3s @ease-in-out;
     opacity: 1;
   }
 
-  .ant-menu-submenu>.ant-menu {
+  .ant-menu-submenu > .ant-menu {
     background: #1f1f1f;
   }
 
@@ -175,14 +184,14 @@
     }
   }
 
-  .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal)
+    .ant-menu-item-selected {
     // a {
     //   color: rgba(255, 255, 255, 0.65)!important;
     // }
-    &:hover a{
-      color: rgba(255, 255, 255)!important;
+    &:hover a {
+      color: rgba(255, 255, 255) !important;
     }
-
   }
 
   // .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) {

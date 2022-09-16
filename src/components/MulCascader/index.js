@@ -74,7 +74,8 @@ class MulCascader extends Component {
         <Button
           style={{ border: '1px dotted #ccc', width: '100%' }}
           icon="plus"
-          onClick={this.addItem}>
+          onClick={this.addItem}
+        >
           添加
         </Button>
       </div>

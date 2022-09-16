@@ -15,7 +15,8 @@ class TileCard extends Component {
         className={cn(styles.tileCardCom, className, {
           [styles.active]: active
         })}
-        style={style}>
+        style={style}
+      >
         <div className="img-container">{this.props.children}</div>
         <div className="tile-title yl_ellipsis" title={title || ''}>
           {title || ''}

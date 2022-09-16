@@ -128,7 +128,7 @@ class Carousel extends Component {
         style={{ height, overflow: 'hidden' }}
       >
         <Icon
-          type="left"
+          type="LeftOutlined"
           onClick={this.onLastIndex}
           style={{
             fontSize: 12,
@@ -142,7 +142,7 @@ class Carousel extends Component {
         </div>
         <Icon
           onClick={this.onNextIndex}
-          type="right"
+          type="RightOutlined "
           style={{
             fontSize: 12,
             color: '#ADB6C2',

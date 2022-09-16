@@ -226,7 +226,7 @@ export default class BaseForm extends React.Component {
 
         let isShow = (collapseList || []).indexOf(source.id) == -1;
         return (
-          <div className="zone-area" key={source.id}>
+          <Col span={24} className="zone-area" key={source.id}>
             {source.label && (
               <div span={24} className="zone-head">
                 <span className="zone-head-title">{source.label}</span>
@@ -241,7 +241,7 @@ export default class BaseForm extends React.Component {
             )}
 
             {isShow && <Row className="zone-body">{zoneItems}</Row>}
-          </div>
+          </Col>
         );
       }
 

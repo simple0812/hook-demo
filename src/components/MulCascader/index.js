@@ -66,7 +66,7 @@ class MulCascader extends Component {
               <Icon
                 className={styles.closeIcon}
                 onClick={(e) => this.deleteItem(index)}
-                type="close-circle"
+                type="CloseCircleOutlined "
               />
             </div>
           );

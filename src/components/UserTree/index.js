@@ -136,7 +136,7 @@ export default class UserTree extends React.Component {
         const title = (
           <span title={item.name} className="treenodeTitle">
             {item.isUser ? (
-              <Icon type="user" style={{ fontSize: 12, marginRight: 4 }} />
+              <Icon type="UserOutlined" style={{ fontSize: 12, marginRight: 4 }} />
             ) : null}
             {item.name}
           </span>

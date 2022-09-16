@@ -23,7 +23,7 @@ class Loading extends Component {
             ...style
           }}
         >
-          <Icon type="loading" />
+          <Icon type="LoadingOutlined" />
         </div>
       );
     }

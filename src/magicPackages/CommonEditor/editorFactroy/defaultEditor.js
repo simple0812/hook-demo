@@ -233,8 +233,6 @@ export default function (source, props) {
   // 使用form的labelcol和wrappercol  优势： 可以快速对齐
   // colFlex: 能够部分模拟customitem 但是不能自定义其他样式 优势：可以使用formitem的验证
 
-  console.log('fieldDecorator', source);
-
   return (
     <Col
       className={source.colFlex ? 'col-flex' : ''}

@@ -17,7 +17,14 @@ const App = () => {
       wrappedComponentRef={(ref) => (this.combineSearchRef = ref)}
       searchData={{
         id: 'id',
-        name: '名称',
+        name:  {
+          label:'名称',
+          control:'select',
+          options: () => ([
+            {key: 1, value: '1', label: '111'},
+            {key: 11, value: '2', label: '222'},
+          ])
+        },
         name1: '名称1',
         name2: '名称2',
         name3: '名称3',

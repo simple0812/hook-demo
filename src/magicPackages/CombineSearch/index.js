@@ -184,7 +184,7 @@ class CombineSearch extends BaseForm {
               className="combine-search-cmd-container"
               style={{
                 ...cmdContainerStyle,
-                float: (searchItems || []).length > 2 ? 'right' : 'left'
+                flexGrow: (searchItems || []).length > 2 ? 1 : 0
               }}>
               {!_.isEmpty(searchItems) && (
                 <Button type="primary" onClick={this.handleSubmit}>

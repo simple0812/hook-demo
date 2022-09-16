@@ -66,7 +66,7 @@ class MetaSelect extends Component {
   };
 
   render() {
-    let { placeholder, idKey, labelKey, className, ...restProps } = this.props;
+    let { placeholder, idKey, labelKey, className, httpMethod, mapIdKey, ...restProps } = this.props;
     const { dataList } = this.state;
 
     return (

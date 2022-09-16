@@ -54,47 +54,21 @@ const formItemLayout = {
   }
 };
 
-function renderControl({
-  source,
-  style,
-  restControlProps,
-  props
-}) {
+function renderControl({ source, style, restControlProps, props }) {
   let extraProps = {};
   if (_.isFunction(source.getExtraProps)) {
     extraProps = source.getExtraProps({ source, props });
   }
-  return (
-    <React.Fragment>
-      {_.isFunction(source.renderBefore) &&
-        source.renderBefore({
-          source,
-          style,
-          restControlProps,
-          props
-        })}
 
-      {React.createElement(source.control || Input, {
-        key: source.id,
-        style: { width: '100%', ...style },
-        ...restControlProps,
-        ...extraProps
-      })}
-
-
-      {_.isFunction(source.renderAfter) &&
-        source.renderAfter({
-          source,
-          style,
-          restControlProps,
-          props
-        })}
-    </React.Fragment>
-  );
+  return React.createElement(source.control || Input, {
+    key: source.id,
+    style: { width: '100%', ...style },
+    ...restControlProps,
+    ...extraProps
+  });
 }
 
 export default function (source, props) {
-
   // 提供一些快捷属性 方便设置controlProps
   const { disabled, placeholder } = source || {};
   const { style, ...restControlProps } = {
@@ -258,14 +232,17 @@ export default function (source, props) {
 
   // 使用form的labelcol和wrappercol  优势： 可以快速对齐
   // colFlex: 能够部分模拟customitem 但是不能自定义其他样式 优势：可以使用formitem的验证
+
+  console.log('fieldDecorator', source);
+
   return (
     <Col
       className={source.colFlex ? 'col-flex' : ''}
       span={source.colSpan || 12}
       key={source.id}
-      style={{ ...source.colItemStyle }}
-    >
+      style={{ ...source.colItemStyle }}>
       <FormItem
+        key={source.id}
         name={source.id}
         label={
           _.isFunction(source.label)
@@ -274,8 +251,7 @@ export default function (source, props) {
         }
         {...formItemLayout}
         {...source.formItemProps}
-        {...source.fieldDecorator}
-      >
+        {...source.fieldDecorator}>
         {renderControl({
           source,
           style,

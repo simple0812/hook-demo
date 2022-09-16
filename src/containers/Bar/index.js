@@ -30,7 +30,10 @@ class PageDetail extends BaseDetailPage {
             tag6: '方案名称',
             tag17: '楼盘名称',
             tag18: '所属门店',
-            tag7: '门店名称',
+            tag7: {
+              label: '门店名称',
+              getInitialValue: () => '123'
+            },
             tag8: {
               label: '门店类型',
               control: 'metaSelect',
@@ -147,8 +150,7 @@ class PageDetail extends BaseDetailPage {
           <Button style={{ margin: '0 5px' }}>复制</Button>
           <Button
             onClick={() => this.setState({ caseDrawerVisible: true })}
-            style={{ margin: '0 5px' }}
-          >
+            style={{ margin: '0 5px' }}>
             做方案
           </Button>
         </>
@@ -158,7 +160,7 @@ class PageDetail extends BaseDetailPage {
 
   renderExtra = () => {
     const { caseDrawerVisible } = this.state;
-    return '123';
+    return '';
   };
 }
 

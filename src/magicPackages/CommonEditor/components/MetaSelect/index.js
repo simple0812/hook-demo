@@ -41,9 +41,6 @@ class MetaSelect extends Component {
       params[labelKey || 'name'] = val;
     }
 
-    console.log('zzz', searchFn);
-
-
     searchFn(params).then((res) => {
       if (res?.code == 0) {
         let xData = res.data;
@@ -62,7 +59,7 @@ class MetaSelect extends Component {
 
   render() {
     const { dataList } = this.state;
-    let { searchFn, idKey, labelKey, ...restProps } = this.props;
+    let { searchFn, idKey, labelKey, mapIdKey, mapLabelKey, apiUrl, httpMethod, ...restProps } = this.props;
     if (!idKey) {
       idKey = 'id';
     }

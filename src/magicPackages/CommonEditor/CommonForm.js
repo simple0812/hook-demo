@@ -51,7 +51,7 @@ class CommonForm extends BaseForm {
     }
 
     return (
-      <Form className="commonEditForm">
+      <Form name="basic" className="commonEditForm" initialValues={{ tag1: '123' }}>
         <div className="common-form-content">
           {globalLoading.$getDetail == 'pending' ? (
             <div
@@ -60,8 +60,7 @@ class CommonForm extends BaseForm {
                 alignItems: 'center',
                 justifyContent: 'center',
                 height: '100%'
-              }}
-            >
+              }}>
               <Icon type="loading" style={{ fontSize: 30 }} />
             </div>
           ) : (
@@ -72,8 +71,7 @@ class CommonForm extends BaseForm {
           {!closeHidden && (
             <Button
               onClick={this.handelClose.bind(this, null)}
-              style={{ marginRight: 8 }}
-            >
+              style={{ marginRight: 8 }}>
               关闭
             </Button>
           )}
@@ -83,8 +81,7 @@ class CommonForm extends BaseForm {
               disabled={isReadonly || globalLoading.$getDetail === 'pending'}
               loading={submitLoading === 'pending'}
               type="primary"
-              onClick={this.handleSubmit}
-            >
+              onClick={this.handleSubmit}>
               保存
             </Button>
           )}
@@ -96,7 +93,7 @@ class CommonForm extends BaseForm {
   }
 }
 
-export default CommonForm
+export default CommonForm;
 
 // export default Form.create({
 //   name: `common_form_${String(Math.random()).slice(2)}` // 使用随机数来避免页面出现id相同的组件

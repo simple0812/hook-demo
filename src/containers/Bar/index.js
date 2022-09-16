@@ -143,8 +143,10 @@ class PageDetail extends BaseDetailPage {
 
       extraButtons: (
         <>
-          <Button style={{ margin: '0 5px' }}>多开</Button>
-          <Button onClick={this.getDetail} style={{ margin: '0 5px' }}>
+          <Button onClick={this.test} style={{ margin: '0 5px' }}>
+            多开
+          </Button>
+          <Button onClick={this.reset} style={{ margin: '0 5px' }}>
             刷新
           </Button>
           <Button style={{ margin: '0 5px' }}>复制</Button>
@@ -156,6 +158,15 @@ class PageDetail extends BaseDetailPage {
         </>
       )
     };
+  }
+
+  test = () => {
+    this.$editorRef.handleSubmit();
+
+  };
+
+  reset = () => {
+    this.$editorRef.handleReset();
   }
 
   renderExtra = () => {

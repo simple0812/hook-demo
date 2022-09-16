@@ -141,6 +141,7 @@ class DetailPage extends Component {
                 isReadonly={isReadonly}
                 model={currentModel || {}}
                 formItemProps={this.editorData?.formItemProps}
+                ref={(ref) => (this.$editorRef = ref)}
                 {...restProps}
               />
               {_.isFunction(this.renderExtra) && this.renderExtra()}

@@ -6,9 +6,8 @@
  *
  * Version: 5.8.2 (2021-06-23)
  */
+/* eslint-disable */
 (function () {
-  'use strict';
-
   var global = window.tinymce.util.Tools.resolve('tinymce.PluginManager');
 
   var setContent = function (editor, html) {

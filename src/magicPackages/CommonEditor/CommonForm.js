@@ -51,7 +51,10 @@ class CommonForm extends BaseForm {
     }
 
     return (
-      <Form name="basic" className="commonEditForm" initialValues={{ tag1: '123' }}>
+      <Form
+        name={`common_form_${String(Math.random()).slice(2)}`}
+        ref={(ref) => this.$form = ref}
+        className="commonEditForm">
         <div className="common-form-content">
           {globalLoading.$getDetail == 'pending' ? (
             <div

@@ -18,10 +18,11 @@ export default class BaseForm extends React.Component {
   };
 
   static defaultProps = {};
+  formRef = React.createRef();
 
   getSearchConditions = () => {
     const { editorItems } = this.props;
-    var conditions = _.cloneDeep(this.props.form.getFieldsValue());
+    var conditions = _.cloneDeep(this.$form.getFieldsValue());
 
     _.keys(conditions).forEach((key) => {
       var val = conditions[key];
@@ -43,7 +44,7 @@ export default class BaseForm extends React.Component {
   };
 
   validateConditions = () => {
-    var conditions = this.props.form.getFieldsValue();
+    var conditions = this.$form.getFieldsValue();
     const { editorItems } = this.props;
     let ret = true;
 
@@ -101,10 +102,12 @@ export default class BaseForm extends React.Component {
       ) {
         let pRes = await promise;
         if (pRes?.code == 0 || pRes?.code == 200) {
-          this.props.form.resetFields();
+          this.$form.resetFields();
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      console.log('submit failed', e);
+    }
   };
 
   // 只验证数据 不触发事件
@@ -112,26 +115,26 @@ export default class BaseForm extends React.Component {
     if (e && e.preventDefault) {
       e.preventDefault();
     }
+
     return new Promise((resolve, reject) => {
-      this.props.form.validateFieldsAndScroll((err, values) => {
-        // form表单验证有效性
-        if (err) {
+      this.$form
+        .validateFields()
+        .then((values) => {
+          // 额外验证参数的有效性
+          let errMsg = this.validateConditions();
+          if (!errMsg) {
+            reject(new Error(errMsg));
+            return;
+          }
+
+          let xParams = this.getSearchConditions();
+          let params = { ...xParams };
+
+          resolve(params);
+        })
+        .catch((err) => {
           reject(new Error(err));
-          return;
-        }
-
-        // 额外验证参数的有效性
-        let errMsg = this.validateConditions();
-        if (!errMsg) {
-          reject(new Error(errMsg));
-          return;
-        }
-
-        let xParams = this.getSearchConditions();
-        let params = { ...xParams };
-
-        resolve(params);
-      });
+        });
     });
   };
 
@@ -161,7 +164,7 @@ export default class BaseForm extends React.Component {
       ) {
         let pRes = await promise;
         if (pRes?.code == 0 || pRes?.code == 200) {
-          this.props.form.resetFields();
+          this.$form.resetFields();
         }
       }
     } catch (e) {}
@@ -169,27 +172,30 @@ export default class BaseForm extends React.Component {
 
   validateFields = (fields) => {
     return new Promise((resolve, reject) => {
-      this.props.form.validateFields(fields, (err, values) => {
-        // form表单验证有效性
-        if (err) {
+      this.$form
+        .validateFields(fields)
+        .then((values) => {
+          let xParams = this.getSearchConditions();
+          let params = { ...xParams };
+
+          resolve(params);
+        })
+        .catch((err) => {
           reject(new Error(err));
-          return;
-        }
-
-        let xParams = this.getSearchConditions();
-        let params = { ...xParams };
-
-        resolve(params);
-      });
+        });
     });
   };
 
   handelClose = () => {
     const { onClose } = this.props;
-    this.props.form.resetFields();
+    this.$form.resetFields();
     if (_.isFunction(onClose)) {
       onClose();
     }
+  };
+
+  handleReset = () => {
+    this.$form.resetFields();
   };
 
   toggleExpand = (id) => {
@@ -232,8 +238,7 @@ export default class BaseForm extends React.Component {
                 <span className="zone-head-title">{source.label}</span>
                 <span
                   className="zone-head-more"
-                  onClick={this.toggleExpand.bind(this, source.id)}
-                >
+                  onClick={this.toggleExpand.bind(this, source.id)}>
                   {isShow ? '收起' : '展开'}
                   <Icon type={isShow ? 'up' : 'down'} />
                 </span>
@@ -257,7 +262,7 @@ export default class BaseForm extends React.Component {
         };
       }
 
-      return editorCom(source, this.props);
+      return editorCom(source, { ...this.props, form: this.$form });
     });
   };
 }

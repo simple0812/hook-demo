@@ -60,8 +60,7 @@ class CommonEditor extends BaseForm {
           ...style
         }}
         className={classNames('commonEditDrawer', this.props.className)}
-        {...restProps}
-      >
+        {...restProps}>
         <div className="draw-content">
           {globalLoading.$getDetail === 'pending' ? (
             <div
@@ -70,12 +69,13 @@ class CommonEditor extends BaseForm {
                 alignItems: 'center',
                 justifyContent: 'center',
                 height: '100%'
-              }}
-            >
+              }}>
               <Icon type="loading" style={{ fontSize: 30 }} />
             </div>
           ) : (
-            <Form>
+            <Form
+              name={`common_form_${String(Math.random()).slice(2)}`}
+              ref={(ref) => this.$form = ref}>
               <Row>{this.renderFormItem(editorData, isReadonly)}</Row>
             </Form>
           )}
@@ -83,16 +83,14 @@ class CommonEditor extends BaseForm {
         <div className="draw-footer">
           <Button
             onClick={this.handelClose.bind(this, null)}
-            style={{ marginRight: 8 }}
-          >
+            style={{ marginRight: 8 }}>
             取消
           </Button>
           <Button
             disabled={isReadonly || globalLoading.$getDetail === 'pending'}
             loading={submitLoading === 'pending'}
             type="primary"
-            onClick={this.handleSubmit}
-          >
+            onClick={this.handleSubmit}>
             保存
           </Button>
           {this.props.extraButtons}

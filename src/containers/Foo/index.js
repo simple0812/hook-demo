@@ -1,5 +1,6 @@
 import { Button, Checkbox, Form, Input } from 'antd';
 import React from 'react';
+import CombineSearch from '@/magicPackages/CombineSearch';
 
 const App = () => {
   const onFinish = (values) => {
@@ -11,70 +12,27 @@ const App = () => {
   };
 
   return (
-    <Form
-      name="basic"
-      labelCol={{
-        span: 8,
+    <CombineSearch
+      model={{}}
+      wrappedComponentRef={(ref) => (this.combineSearchRef = ref)}
+      searchData={{
+        id: 'id',
+        name: '名称',
+        name1: '名称1',
+        name2: '名称2',
+        name3: '名称3',
+        name4: '名称4',
+        name5: '名称5',
+        name6: '名称6',
+        name7: '名称7',
+        name8: '名称8',
+        name9: '名称9',
+        name10: '名称10',
+        name11: '名称11',
+        name12: '名称12'
       }}
-      wrapperCol={{
-        span: 16,
-      }}
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item
-        label="Username"
-        name="username"
-        initialValue='1234'
-        rules={[
-          {
-            required: true,
-            message: 'Please input your username!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item
-        name="remember"
-        valuePropName="checked"
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
-      <Form.Item
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+      onSearch={onFinish}
+    />
   );
 };
 

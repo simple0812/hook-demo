@@ -38,19 +38,20 @@
 */
 
 import React from 'react';
-import { Form, Row, Button, Icon } from 'antd';
+import { Form, Row, Button } from 'antd';
+import Icon from '@/components/Icon/AntIcon';
 import styles from './index.less';
 import _ from 'lodash';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import searcherFactory from './Searcher';
+import BaseForm from '../CommonEditor/BaseForm';
 
 // 当前页如果含有tabs标签 则在搜索区域不应包含tabs对应的字段 否则会被tabs覆盖
-class CombineSearch extends React.Component {
+class CombineSearch extends BaseForm {
   static propTypes = {
     cmdContainerStyle: PropTypes.object,
-    combineSearchItems: PropTypes.array
+    combineSearchItems: PropTypes.object
   };
 
   static defaultProps = {};
@@ -94,37 +95,10 @@ class CombineSearch extends React.Component {
     }
   };
 
-  handleVisibleChange = () => {
-    this.setState({ visible: !this.state.visible });
-  };
-
   handleReset = () => {
-    this.props.form.resetFields();
+    this.$form.resetFields();
 
     this.handleSubmit();
-  };
-
-  getSearchConditions = () => {
-    const { combineSearchItems } = this.props;
-    var conditions = _.cloneDeep(this.props.form.getFieldsValue());
-
-    _.keys(conditions).forEach((key) => {
-      var val = conditions[key];
-      let searcherData =
-        _.find(combineSearchItems, (each) => each.id === key) || {};
-
-      let searcher = searcherFactory(searcherData.control);
-      if (searcher) {
-        conditions[key] = searcher.parseValue(val, searcherData, {
-          props: this.props,
-          conditions,
-          key
-        });
-      }
-    });
-
-    let xPrams = _.omitBy(conditions, _.isUndefined);
-    return xPrams;
   };
 
   handleSubmit = () => {
@@ -136,7 +110,7 @@ class CombineSearch extends React.Component {
   };
 
   isExpandable = () => {
-    let { combineSearchItems = [] } = this.props;
+    let { searchData = {} } = this.props;
     let windowWidth =
       document.documentElement.clientWidth || document.body.clientWidth;
     let screenSize = '';
@@ -164,6 +138,7 @@ class CombineSearch extends React.Component {
     } else {
       screenSize = 'xxl';
     }
+    let combineSearchItems = _.keys(searchData);
 
     let rows = (combineSearchItems.length + 1) / sizeMap[screenSize];
 
@@ -175,14 +150,10 @@ class CombineSearch extends React.Component {
   };
 
   render() {
-    let {
-      combineSearchItems = [],
-      cmdContainerStyle,
-      resetButtonHidden
-    } = this.props;
+    let { cmdContainerStyle, resetHidden, searchData } = this.props;
     let { isExpand } = this.state;
-    let searchItems = _.cloneDeep(combineSearchItems);
     let xStyle = {};
+    let searchItems = _.keys(searchData);
 
     let { isExpandable, countPerRow } = this.isExpandable();
 
@@ -196,38 +167,35 @@ class CombineSearch extends React.Component {
           'combineSearchCom',
           this.props.className,
           'combine-search-container'
-        )}
-      >
-        <Form className="searchForm" onSubmit={this.handleSubmit}>
+        )}>
+        <Form
+          className="searchForm"
+          ref={(ref) => (this.$form = ref)}
+          onSubmit={this.handleSubmit}>
           <Row gutter={10} style={{ paddingRight: 5, ...xStyle }}>
-            {searchItems.map((source) => {
-              source.control = source.control || 'input';
-              source.fieldDecorator = source.fieldDecorator || {};
-
-              let searcher = searcherFactory(source.control);
-              if (!searcher) return null;
-
-              return searcher.comp(source, this.props);
-            })}
+            {this.renderFormItem(
+              searchData,
+              false,
+              countPerRow,
+              searchItems.length
+            )}
 
             <div
               className="combine-search-cmd-container"
               style={{
                 ...cmdContainerStyle,
                 float: (searchItems || []).length > 2 ? 'right' : 'left'
-              }}
-            >
+              }}>
               {!_.isEmpty(searchItems) && (
                 <Button type="primary" onClick={this.handleSubmit}>
                   搜索
                 </Button>
               )}
-              {!_.isEmpty(searchItems) && !resetButtonHidden && (
+              {!_.isEmpty(searchItems) && !resetHidden && (
                 <Button
                   className="btn-search_reset"
                   onClick={this.handleReset}
-                  style={{ margin: '0 5px' }}
-                >
+                  style={{ margin: '0 5px' }}>
                   重置
                 </Button>
               )}
@@ -245,8 +213,7 @@ class CombineSearch extends React.Component {
                     this.setState({
                       isExpand: !isExpand
                     });
-                  }}
-                >
+                  }}>
                   <span>{isExpand ? '折叠' : '展开'}</span>
                   <Icon
                     style={{ fontSize: 14, color: '#1890FF' }}
@@ -262,4 +229,4 @@ class CombineSearch extends React.Component {
   }
 }
 
-export default Form.create()(CombineSearch);
+export default CombineSearch;

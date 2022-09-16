@@ -215,12 +215,17 @@ export default class BaseForm extends React.Component {
     });
   };
 
-  renderFormItem = (editorDataList, isReadonly = false, colCount = 1) => {
+  renderFormItem = (editorDataList, isReadonly = false, colCount = 1, itemCount = null) => {
     const { collapseList } = this.state;
     let xList = generateEditorFormData({
       editorData: editorDataList,
       isReadonly
     });
+
+    // 搜索组件需要支持 展开/折叠  搜索组件不会有分组
+    if (itemCount) {
+      xList = xList.slice(0, itemCount);
+    }
     return xList.map((source) => {
       if (source.control == 'zone') {
         let zoneItems = this.renderFormItem(

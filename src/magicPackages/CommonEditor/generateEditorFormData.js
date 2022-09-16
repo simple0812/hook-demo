@@ -16,6 +16,15 @@ function fn({ editorData, isReadonly } = {}) {
           disabled: isReadonly
         }
       };
+    } else if (_.isArray(val)) {
+      val = {
+        label: val[0],
+        control: val[1] || 'input',
+        fieldDecorator: {},
+        controlProps: {
+          disabled: isReadonly
+        }
+      };
     } else {
       val.controlProps = {
         disabled: isReadonly,

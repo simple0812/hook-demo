@@ -428,42 +428,6 @@ export default class BaseTablePage extends Component {
       });
   };
 
-  getSearchDataFrom = () => {
-    if (_.isEmpty(this.searchData?.data)) {
-      return [];
-    }
-    let ret = [];
-    _.keys(this.searchData.data).forEach((key, index) => {
-      let val = this.searchData.data[key];
-
-      if (_.isString(val)) {
-        val = {
-          label: val,
-          fieldDecorator: {}
-        };
-      }
-
-      if (_.isEmpty(val.fieldDecorator)) {
-        val.fieldDecorator = {};
-      }
-
-      if (
-        _.isFunction(val.getInitialValue) &&
-        _.isUndefined(val.fieldDecorator.initialValue)
-      ) {
-        val.fieldDecorator.initialValue = val.getInitialValue();
-      }
-
-      ret.push({
-        id: key,
-        sort: index,
-        ...val
-      });
-    });
-
-    return ret;
-  };
-
   getOperateColumn = () => {
     if (
       !this.pageActions.update &&
@@ -602,7 +566,6 @@ export default class BaseTablePage extends Component {
   };
 
   renderSearch = () => {
-    let items = this.getSearchDataFrom();
     let props = {};
 
     props = {
@@ -613,7 +576,7 @@ export default class BaseTablePage extends Component {
     return (
       <CombineSearch
         wrappedComponentRef={(ref) => (this.combineSearchRef = ref)}
-        combineSearchItems={items}
+        searchData={this.searchData?.data}
         onSearch={this.handleSearch}
         {...props}
       />

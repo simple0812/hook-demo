@@ -13,7 +13,6 @@ let menuData = routerConfig.menus;
 let subPages = routerConfig.subPages;
 
 export function renderByLayout(Com, title, routeData) {
-  console.log('routeData', routeData);
   if (routeData?.layout) {
     return <Com />;
   }

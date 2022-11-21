@@ -91,11 +91,17 @@ module.exports = override(
   addWebpackModuleRule({
     test: /\.svg$/,
     use: ['@svgr/webpack']
-  })
-  // (config) => {
-  //   console.log(config);
-  //   return config;
-  // }
+  }),
+  (config) => {
+    // console.log(config);
+   
+    // 修改react-scripts/config/paths 配置
+    // const paths = require('react-scripts/config/paths');
+    // paths.appBuild = path.join(path.dirname(paths.appBuild), 'dist');
+    // config.output.path = paths.appBuild;
+
+    return config;
+  }
 
   // (config) => {
   //   // 增加处理less module配置 customize-cra 不提供 less.module 只提供css.module
